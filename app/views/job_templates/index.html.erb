@@ -1,0 +1,27 @@
+<h1>Listing job_templates</h1>
+
+<table>
+  <tr>
+    <th>Templatename</th>
+    <th>Templatesubject</th>
+    <th>Templatecontent</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @job_templates.each do |job_template| %>
+  <tr>
+    <td><%= job_template.templateName %></td>
+    <td><%= job_template.templateSubject %></td>
+    <td><%= job_template.templateContent %></td>
+    <td><%= link_to 'Show', job_template %></td>
+    <td><%= link_to 'Edit', edit_job_template_path(job_template) %></td>
+    <td><%= link_to 'Destroy', job_template, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Job template', new_job_template_path %>

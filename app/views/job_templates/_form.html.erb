@@ -1,0 +1,29 @@
+<%= form_for(@job_template) do |f| %>
+  <% if @job_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job_template.errors.count, "error") %> prohibited this job_template from being saved:</h2>
+
+      <ul>
+      <% @job_template.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :templateName %><br />
+    <%= f.text_field :templateName %>
+  </div>
+  <div class="field">
+    <%= f.label :templateSubject %><br />
+    <%= f.text_field :templateSubject %>
+  </div>
+  <div class="field">
+    <%= f.label :templateContent %><br />
+    <%= f.text_area :templateContent %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

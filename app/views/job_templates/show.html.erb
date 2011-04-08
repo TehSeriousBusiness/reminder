@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Templatename:</b>
+  <%= @job_template.templateName %>
+</p>
+
+<p>
+  <b>Templatesubject:</b>
+  <%= @job_template.templateSubject %>
+</p>
+
+<p>
+  <b>Templatecontent:</b>
+  <%= @job_template.templateContent %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_template_path(@job_template) %> |
+<%= link_to 'Back', job_templates_path %>

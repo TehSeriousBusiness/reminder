@@ -1,0 +1,37 @@
+<h1>Listing jobs</h1>
+
+<table>
+  <tr>
+    <th>Initiator</th>
+    <th>Destinations</th>
+    <th>Subject</th>
+    <th>Content</th>
+    <th>Attachement</th>
+    <th>Kickoff</th>
+    <th>Repetition</th>
+    <th>Delay</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @jobs.each do |job| %>
+  <tr>
+    <td><%= job.initiator %></td>
+    <td><%= job.destinations %></td>
+    <td><%= job.subject %></td>
+    <td><%= job.content %></td>
+    <td><%= job.attachement %></td>
+    <td><%= job.kickOff %></td>
+    <td><%= job.repetition %></td>
+    <td><%= job.delay %></td>
+    <td><%= link_to 'Show', job %></td>
+    <td><%= link_to 'Edit', edit_job_path(job) %></td>
+    <td><%= link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Job', new_job_path %>

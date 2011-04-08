@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Initiator:</b>
+  <%= @job.initiator %>
+</p>
+
+<p>
+  <b>Destinations:</b>
+  <%= @job.destinations %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @job.subject %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @job.content %>
+</p>
+
+<p>
+  <b>Attachement:</b>
+  <%= @job.attachement %>
+</p>
+
+<p>
+  <b>Kickoff:</b>
+  <%= @job.kickOff %>
+</p>
+
+<p>
+  <b>Repetition:</b>
+  <%= @job.repetition %>
+</p>
+
+<p>
+  <b>Delay:</b>
+  <%= @job.delay %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>

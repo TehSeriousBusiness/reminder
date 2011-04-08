@@ -1,4 +1,12 @@
 Reminder::Application.routes.draw do
+  resources :jobs
+
+  resources :job_templates
+
+  resources :mail_servers
+
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

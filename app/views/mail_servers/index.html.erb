@@ -1,0 +1,29 @@
+<h1>Listing mail_servers</h1>
+
+<table>
+  <tr>
+    <th>Address</th>
+    <th>Password</th>
+    <th>Host</th>
+    <th>Port</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mail_servers.each do |mail_server| %>
+  <tr>
+    <td><%= mail_server.address %></td>
+    <td><%= mail_server.password %></td>
+    <td><%= mail_server.host %></td>
+    <td><%= mail_server.port %></td>
+    <td><%= link_to 'Show', mail_server %></td>
+    <td><%= link_to 'Edit', edit_mail_server_path(mail_server) %></td>
+    <td><%= link_to 'Destroy', mail_server, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mail server', new_mail_server_path %>

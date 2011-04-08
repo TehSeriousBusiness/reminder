@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  initiator: MyString
+  destinations: MyText
+  subject: MyString
+  content: MyText
+  attachement: 
+  kickOff: 2011-04-08
+  repetition: 1
+  delay: 1
+
+two:
+  initiator: MyString
+  destinations: MyText
+  subject: MyString
+  content: MyText
+  attachement: 
+  kickOff: 2011-04-08
+  repetition: 1
+  delay: 1

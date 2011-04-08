@@ -1,0 +1,33 @@
+<%= form_for(@mail_server) do |f| %>
+  <% if @mail_server.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mail_server.errors.count, "error") %> prohibited this mail_server from being saved:</h2>
+
+      <ul>
+      <% @mail_server.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :host %><br />
+    <%= f.text_field :host %>
+  </div>
+  <div class="field">
+    <%= f.label :port %><br />
+    <%= f.text_field :port %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

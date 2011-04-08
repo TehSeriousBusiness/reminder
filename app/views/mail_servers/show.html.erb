@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Address:</b>
+  <%= @mail_server.address %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @mail_server.password %>
+</p>
+
+<p>
+  <b>Host:</b>
+  <%= @mail_server.host %>
+</p>
+
+<p>
+  <b>Port:</b>
+  <%= @mail_server.port %>
+</p>
+
+
+<%= link_to 'Edit', edit_mail_server_path(@mail_server) %> |
+<%= link_to 'Back', mail_servers_path %>
