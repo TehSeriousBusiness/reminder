@@ -1,0 +1,3 @@
+Username & Password Länge: 3-10
+	und nur buchstaben & zahlen
+
