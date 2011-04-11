@@ -25,6 +25,11 @@ class JobTest < ActiveSupport::TestCase
   ## default without missing parameters
   #job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
 
+  test "Corrent Number of Parameters" do
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    assert !(job.save()), 'this should not fail'
+  end
+
   test "Missing Parameters - initiator" do
     job = Job.new(:destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'initiator required'
