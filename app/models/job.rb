@@ -19,6 +19,7 @@ class Job < ActiveRecord::Base
   validates_presence_of(:subject)
   validates_presence_of(:content)
   validates_presence_of(:kickOff)
+
   validates_presence_of(:repetition)
   validates_presence_of(:delay)
 
@@ -38,8 +39,8 @@ class Job < ActiveRecord::Base
 
   # delay restriction 0-maxint  -> greater_than => -1
   validates_numericality_of(:delay, {:greater_than => -1, only_integer => true, :message => "use a integer between 0-maxint"})
-    
+
   # kickOff restriction, must be in the future
   # TODO
-    
+
 end
