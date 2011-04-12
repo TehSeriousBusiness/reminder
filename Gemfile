@@ -33,3 +33,6 @@ gem 'sqlite3'
 group :development, :test do
 	gem 'autotest-rails'
 end 
+
+# use package "mail" in every enviroment
+gem 'mail' 
