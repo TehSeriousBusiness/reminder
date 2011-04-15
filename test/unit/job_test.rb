@@ -1,6 +1,6 @@
 require 'test_helper'
 
-### TODO: validation for parameters missing: content, attachment
+### TODO: validation for parameters missing: content, attachement
 class JobTest < ActiveSupport::TestCase
 
   #### Missing Parameters START ####
@@ -18,35 +18,35 @@ class JobTest < ActiveSupport::TestCase
   testVarDestinations = "dest1@host1.de;dest2@host2.com;dest3@host3.org"
   testVarSubject = "This is a Subject"
   testVarContent = "This is a very long Text, This is also the Content of the Email"
-  testVarAttachment = 0b111111110000000000000011 # iam a binary -> hex: F03
+  testVarattachement = 0b111111110000000000000011 # iam a binary -> hex: F03
   testVarKickOff = Time.now()
   testVarRepetition = 4
   testVarDelay = 60 # delay is 60 seconds
   ## default without missing parameters
-  #job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+  #job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
 
   test "Corrent Number of Parameters" do
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'this should not fail'
   end
 
   test "Missing Parameters - initiator" do
-    job = Job.new(:destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'initiator required'
   end
 
   test "Missing Parameters - destinations" do
-    job = Job.new(:initiator => testVarInitiator, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'destinations required'
   end
 
   test "Missing Parameters - subject" do
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'subject required'
   end
 
   test "Missing Parameters - content" do
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'content required'
   end
 
@@ -56,17 +56,17 @@ class JobTest < ActiveSupport::TestCase
   end
 
   test "Missing Parameters - kickOff" do
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'kickOff required'
   end
 
   test "Missing Parameters - repetition" do
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :delay => testVarDelay)
     assert !(job.save()), 'repetition required'
   end
 
   test "Missing Parameters - delay" do
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition)
     assert !(job.save()), 'delay required'
   end
   #### Missing Parameters END ####
@@ -74,7 +74,7 @@ class JobTest < ActiveSupport::TestCase
   #### Validate Parameters START ####
   test "Validate Parameter - initiator - using testVarInitiator" do
     # Job should have a validate_initiator, this method checks if the initiator exists in the user table
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement valid username check (does a username with this name exists in the db?) within job model"
     #assert !(job.save()), 'delay required'
   end
@@ -82,7 +82,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - initiator - using anon" do
     # Job should have a validate_initiator, this method checks if the initiator exists in the user table
     username = "anon"
-    job = Job.new(:initiator => username, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => username, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement valid username check (does a username with this name exists in the db?) within job model"
     #assert !(job.save()), 'delay required'
   end
@@ -90,7 +90,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - destinations - invalid destinations 01" do
     destination = "nomail@bla"
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'invalid destinations, missing domain'
   end
@@ -98,7 +98,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - destinations - invalid destinations 02" do
     destination = "nomail.bla.de"
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'invalid destinations, missing @'
   end
@@ -106,7 +106,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - destinations - invalid destinations 03" do
     destination = "nomail@.de"
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'invalid destinations, missing host'
   end
@@ -114,7 +114,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - destinations - invalid destinations 04" do
     destination = "nomail@"
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'invalid destinations, missing host and domain, no dot'
   end
@@ -122,7 +122,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - destinations - invalid destinations 05" do
     destination = "nomail@."
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'invalid destinations, missing host and domain'
   end
@@ -130,14 +130,14 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - destinations - invalid destinations 06" do
     destination = "@host.de"
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'invalid destinations, missing email before @'
   end
 
   test "Validate Parameter - initiator - valid destinations 01" do
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'email correct, should be accepted'
   end
@@ -145,7 +145,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - initiator - valid destinations 02" do
     destination = "mail.mit@punkt.com"
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'email correct, should be accepted'
   end
@@ -153,7 +153,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - initiator - valid destinations 03" do
     destination = "mail_mit@unterstrich.com"
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'email correct, should be accepted'
   end
@@ -161,7 +161,7 @@ class JobTest < ActiveSupport::TestCase
   test "Validate Parameter - initiator - valid destinations 04" do
     destination = "mail-mit@bindestrich.com"
     # Job should have a validate_emailFormat, this method checks if the email can be valid
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement email format check within job model"
     #assert !(job.save()), 'email correct, should be accepted'
   end
@@ -174,11 +174,13 @@ class JobTest < ActiveSupport::TestCase
       subject = subject + "s"
     end
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => subject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => subject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'subject invalid, to long, length must be under 254 chars'
   end
 
-  test "Validate Parameter - subject - subject length <= 254" do
+  #test "Validate Parameter - subject - subject length <= 254" do
+ test "abc" do
+  
     # this parameter is longer than 254 chars
     subject = "";
     # loop 255 times and add a s to the string -> creating a string longer than 254
@@ -186,7 +188,7 @@ class JobTest < ActiveSupport::TestCase
       subject = subject + "s"
     end
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => subject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => subject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert !(job.save()), 'subject valid, check your length validator'
   end
 
@@ -194,7 +196,7 @@ class JobTest < ActiveSupport::TestCase
     # Job should have a validate_Time, this method checks if the time is in the future or past (future is valid, past is invalid)
     time = Time.now() - 1 # -> sets the time to now - 1 second
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => time, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => time, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement time check within job model"
     #assert !(job.save()), 'kickoff time is invalid, the time should be in the future'
   end
@@ -203,7 +205,7 @@ class JobTest < ActiveSupport::TestCase
     # Job should have a validate_Time, this method checks if the time is in the future or past (future is valid, past is invalid)
     time = Time.now() + 200 # -> sets the time to now + 200 second
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => time, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => time, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement time check within job model"
     #assert !(job.save()), 'kickoff time is valid, check your validator'
   end
@@ -212,7 +214,7 @@ class JobTest < ActiveSupport::TestCase
     # Job should have a validate_intNumber, this method checks if the number is bigger than zero
     repNumber = 0
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => repNumber, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => repNumber, :delay => testVarDelay)
     assert false, "method not yet ready, implement number check within job model"
     #assert !(job.save()), 'repetition number is invalid, should be 1+'
   end
@@ -221,7 +223,7 @@ class JobTest < ActiveSupport::TestCase
     # Job should have a validate_intNumber, this method checks if the number is bigger than zero
     repNumber = 1
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => repNumber, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => repNumber, :delay => testVarDelay)
     assert false, "method not yet ready, implement number check within job model"
     #assert !(job.save()), 'repetition number is valid, check your number validator'
   end
@@ -230,7 +232,7 @@ class JobTest < ActiveSupport::TestCase
     # Job should have a validate_intNumber, this method checks if the number is bigger than zero
     repNumber = 3
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => repNumber, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => repNumber, :delay => testVarDelay)
     assert false, "method not yet ready, implement number check within job model"
     #assert !(job.save()), 'repetition number is invalid, the repetition should be 1+'
   end
@@ -239,7 +241,7 @@ class JobTest < ActiveSupport::TestCase
     # Job should have a validate_intNumber, this method checks if the number is bigger than -1
     delay = -1
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement number check within job model"
     #assert !(job.save()), 'delay number is invalid, the delay should be 0+'
   end
@@ -248,7 +250,7 @@ class JobTest < ActiveSupport::TestCase
     # Job should have a validate_intNumber, this method checks if the number is bigger than -1
     delay = 0
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement number check within job model"
     #assert !(job.save()), 'delay number is valid, check your validation method'
   end
@@ -257,7 +259,7 @@ class JobTest < ActiveSupport::TestCase
     # Job should have a validate_intNumber, this method checks if the number is bigger than -1
     delay = 5
 
-    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachment => testVarAttachment, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
+    job = Job.new(:initiator => testVarInitiator, :destinations => testVarDestinations, :subject => testVarSubject, :content => testVarContent, :attachement => testVarattachement, :kickOff => testVarKickOff, :repetition => testVarRepetition, :delay => testVarDelay)
     assert false, "method not yet ready, implement number check within job model"
     #assert !(job.save()), 'delay number is valid, check your validation method'
   end
