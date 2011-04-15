@@ -30,17 +30,17 @@ class Job < ActiveRecord::Base
   # email check from http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000084
   # TODO change regex to allow more than one email like (emails are seperated by ";"
   # like: email1@host1.de;email2@host2.com
-  #validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   # this second form comes from http://my.rails-royce.org/2010/07/21/email-validation-in-ruby-on-rails-without-regexp/
   #validates :destinations, :email => true
 
   # repetition restriction 1-maxint  -> greater_than => 0
   #validates_numericality_of(:repetition, {:greater_than => 0, :message => "use a integer between 1-maxint"})
   # testet ob repetiton nur ein int wert ist
-  #validates_numericality_of(:repetition, {:greater_than => 0, only_integer => true, :message => "use a integer between 1-maxint"})
+  validates_numericality_of(:repetition, {:greater_than => 0, :only_integer => true, :message => "use a integer between 1-maxint"})
 
   # delay restriction 0-maxint  -> greater_than => -1
-  #validates_numericality_of(:delay, {:greater_than => -1, :message => "use a integer between 0-maxint"})
+  validates_numericality_of(:delay, {:greater_than => -1, :message => "use a integer between 0-maxint"})
   # testet ob repetiton nur ein int wert ist
   #validates_numericality_of(:delay, {:greater_than => -1, only_integer => true, :message => "use a integer between 0-maxint"})
 
