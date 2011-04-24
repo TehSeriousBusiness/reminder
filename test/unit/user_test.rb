@@ -18,6 +18,7 @@ class UserTest < ActiveSupport::TestCase
       user1 = User.new(:username => "Jarqueline", :password => "Jarqueli42")
       user2 = User.new(:username => "Jarqueline", :password => "Jarqueli42")
       
+      # TODO: Break up in two methods? (one assertion per method!)
       assert (user1.save()), 'Should be stored'
       assert !(user2.save()), 'Username already exist'
   end
@@ -41,7 +42,7 @@ class UserTest < ActiveSupport::TestCase
   end
     
   test "Maximum length - password" do
-      user = User.new(:username => "Jarqueline", :password => "1234567801")
+      user = User.new(:username => "Jarqueline", :password => "12345678901")
       
       assert !(user.save()), 'Invalid length, password too big'
   end
