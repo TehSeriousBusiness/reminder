@@ -1,3 +1,9 @@
 Username & Password Länge: 3-10
 	und nur buchstaben & zahlen
 
+
+JobTemplate
+        - templateName:string			- 	[0, 20] characters, required and unique
+        - templateSubject:string		- 	[0, 20] characters
+        - templateContent:text			- 	[0, 250] characters
+		Name erforderlich, alle member vars veraenderbar. !!!
