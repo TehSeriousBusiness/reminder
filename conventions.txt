@@ -1,7 +1,6 @@
 ﻿Username & Password Länge: 3-10
 	und nur buchstaben & zahlen
 
-<<<<<<< HEAD
 Jobs:
 	TODO: es fehlen noch einige validatoren für destinations, kickOff, repetition und delay
 	initiator, subject	- Länge beschränkt auf 254
@@ -24,4 +23,11 @@ JobTemplate
         - templateSubject:string		- 	[0, 20] characters
         - templateContent:text			- 	[0, 250] characters
 		Name erforderlich, alle member vars veraenderbar. !!!
->>>>>>> remotes/origin/devM_TDDJobTemplate
+=======
+MailServer
+- address : String, unique, max length = 40
+- password : String,        max length = 40
+- host : String,            max length = 40
+- port : integer, range: [0, 65535]
+
+all members modifiable, required
