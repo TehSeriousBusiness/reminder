@@ -1,0 +1,27 @@
+29.04
+	- user test: Add 2 unique User, rename user1 to user2 -> should fail
+	- user test: create user and rename username, check for new username in DB
+	- job test: time future and past
+	- user test (functional test?): delete user -> all jobs removed (user = hasmany :jobs; job belongs_to :user)
+
+
+
+
+USER.FIND! findet user objekt in der DB
+z.B
+
+user1 = User.new(asdfasdf)
+    user2 = User.new(asdf)
+    user1.save
+    user2.save
+    user1.username = user2.username
+    user1.save
+
+
+
+
+fürs nächste mal (vom 29.04 ausgehend)
+ - nötige Seiten überlegen, aussehen
+ - mehr festfälle schreiben Testfälle
+ - authentifizierung angucken, für die login seite
+ - Jobformular
