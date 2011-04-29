@@ -75,5 +75,6 @@ PLATFORMS
 
 DEPENDENCIES
   autotest-rails
+  mail
   rails (= 3.0.5)
   sqlite3

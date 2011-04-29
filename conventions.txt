@@ -1,3 +1,18 @@
-Username & Password Länge: 3-10
+﻿Username & Password Länge: 3-10
 	und nur buchstaben & zahlen
 
+Jobs:
+	TODO: es fehlen noch einige validatoren für destinations, kickOff, repetition und delay
+	initiator, subject	- Länge beschränkt auf 254
+	initiator		- falls nicht angegeben wird soll der default vom Controller gesetzt werden
+	attachment		- optionales attribut, es wird nicht geprüft ob dieses Attr vorhanden ist bei der Sicherung
+	subject/content		- Attr wird überprüft, falls nichts angegeben werden soll muss ein leerString verwendet werden
+	destinations		- Emails nach der Form email1@host1.de;email2@host2.de
+	kickOff			- Muss in der Zukunft liegen
+	repetition		- muss größer 0 sein
+	delay			- gültiger wert ab 0, falls 0 angegeben wird müssen alle mails so schnell wie möglich abgeschickt werden
+	
+
+Default
+	Username: anon
+	Password: legion
