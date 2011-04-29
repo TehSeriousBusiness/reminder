@@ -52,9 +52,9 @@ class JobTest < ActiveSupport::TestCase
     assert !job.save(), job.errors.inspect
   end
 
-  test "Invalid - Missing Parameters - attachement" do
+  test "Valid - Missing Parameters - attachement" do
     job = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent, :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
-    assert !job.save(), job.errors.inspect
+    assert job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - kickOff" do

@@ -16,14 +16,14 @@ class Job < ActiveRecord::Base
   ##  t.integer :delay
 
   ### validate presences
-#  validates_presence_of(:initiator)
-#  validates_presence_of(:destinations)
-#  validates_presence_of(:subject)
-#  validates_presence_of(:content)
-#  validates_presence_of(:kickOff)
-#
-#  validates_presence_of(:repetition)
-#  validates_presence_of(:delay)
+  validates_presence_of(:initiator)
+  validates_presence_of(:destinations)
+  validates_presence_of(:subject)
+  validates_presence_of(:content)
+  validates_presence_of(:kickOff)
+
+  validates_presence_of(:repetition)
+  validates_presence_of(:delay)
 #
 #  ### validate length
 #  #validates_length_of(:initiator, {:maximum => 254, :too_long => "username is too long (%d), this cannot be"})
