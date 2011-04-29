@@ -2,6 +2,7 @@ class CreateJobs < ActiveRecord::Migration
   def self.up
     create_table :jobs do |t|
       t.string :initiator
+      #t.integer :user_id statt initiator
       t.text :destinations
       t.string :subject
       t.text :content

@@ -68,6 +68,6 @@ class UserTest < ActiveSupport::TestCase
   test "Validate characters - special characters - password" do
       user = User.new(:username => "Jarqueline", :password => "J{(a#+=e42")
       
-      assert !(user.save()), 'Invalid special characters in password'
+      assert !user.save, 'Invalid special characters in password'
   end
 end
