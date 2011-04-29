@@ -1,6 +1,7 @@
 ﻿Username & Password Länge: 3-10
 	und nur buchstaben & zahlen
 
+<<<<<<< HEAD
 Jobs:
 	TODO: es fehlen noch einige validatoren für destinations, kickOff, repetition und delay
 	initiator, subject	- Länge beschränkt auf 254
@@ -16,3 +17,11 @@ Jobs:
 Default
 	Username: anon
 	Password: legion
+=======
+
+JobTemplate
+        - templateName:string			- 	[0, 20] characters, required and unique
+        - templateSubject:string		- 	[0, 20] characters
+        - templateContent:text			- 	[0, 250] characters
+		Name erforderlich, alle member vars veraenderbar. !!!
+>>>>>>> remotes/origin/devM_TDDJobTemplate
