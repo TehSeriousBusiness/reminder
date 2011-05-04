@@ -107,6 +107,11 @@ class JobTest < ActiveSupport::TestCase
     @validJob.destinations = "@host.de"
     assert !@validJob.save(), @validJob.errors.inspect
   end
+  
+  test "Invalid - Validate Parameter - destinations - invalid destinations doubleMail 01" do
+      @validJob.destinations = "email1@host1.de;email12@host2.awe"
+      assert !@validJob.save(), @validJob.errors.inspect
+    end
 
   test "Valid - Validate Parameter - initiator - valid destinations 01" do
     @validJob.destinations = "mail.mit@punkt.com"

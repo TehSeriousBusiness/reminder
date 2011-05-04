@@ -30,9 +30,9 @@ gem 'sqlite3'
 #   gem 'webrat'
 # end
 
-group :development, :test do
-	gem 'autotest-rails'
-end 
+#group :development, :test do
+#	gem 'autotest-rails'
+#end 
 
 # use package "mail" in every enviroment
 gem 'mail' 

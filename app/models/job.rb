@@ -24,15 +24,25 @@ class Job < ActiveRecord::Base
 
   validates_presence_of(:repetition)
   validates_presence_of(:delay)
-#
-#  ### validate length
-#  #validates_length_of(:initiator, {:maximum => 254, :too_long => "username is too long (%d), this cannot be"})
-#  #validates_length_of(:subject, {:maximum => 254, :too_long => "subject is too long (%d), subject cannot be saved"})
-#
+  
+  # validate delay = 0++
+  validates_numericality_of :delay, :only_integer => true, :greater_than => -1
+  
+  # validate repetition = 1++
+  validates_numericality_of :repetition, :only_integer => true, :greater_than => 0
+
+  validates_length_of :subject, :maximum => 254, :too_long => "subject is too long (%d), subject cannot be saved"
+    
+  validates_length_of :content, :maximum => 254, :too_long => "content is too long (%d), this cannot be"
+
+  # email check from http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000084
+  #validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  #                                              mail      @  host         . topdomain      ;
+  validates_format_of :destinations, :with => "(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+"
+  
 #  # email check from http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000084
 #  # TODO change regex to allow more than one email like (emails are seperated by ";"
 #  # like: email1@host1.de;email2@host2.com
-##  validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 #  # this second form comes from http://my.rails-royce.org/2010/07/21/email-validation-in-ruby-on-rails-without-regexp/
 #  #validates :destinations, :email => true
 #
