@@ -28,8 +28,8 @@ class Job < ActiveRecord::Base
   # validate delay = 0++
   validates_numericality_of :delay, :only_integer => true, :greater_than => -1
   
-  # validate repetition = 1++
-  validates_numericality_of :repetition, :only_integer => true, :greater_than => 0
+  # validate repetition = 0++
+  validates_numericality_of :repetition, :only_integer => true, :greater_than => -1
 
   validates_length_of :subject, :maximum => 254, :too_long => "subject is too long (%d), subject cannot be saved"
     
@@ -40,7 +40,7 @@ class Job < ActiveRecord::Base
   #                                              mail      @  host         . topdomain      ;
   validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_format_of :destinations, :with => "(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+"
-  validates_format_of :destinations, :with => (/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+
+  validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,};)\Z/i
   
 #  # email check from http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000084
 #  # TODO change regex to allow more than one email like (emails are seperated by ";"

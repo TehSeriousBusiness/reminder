@@ -9,7 +9,7 @@ Jobs:
 	subject/content		- Attr wird überprüft, falls nichts angegeben werden soll muss ein leerString verwendet werden
 	destinations		- Emails nach der Form email1@host1.de;email2@host2.de
 	kickOff			- Muss in der Zukunft liegen
-	repetition		- muss größer 0 sein
+	repetition		- muss gleich/größer 0 sein; 0 = unendlich oft wiederholen
 	delay			- gültiger wert ab 0, falls 0 angegeben wird müssen alle mails so schnell wie möglich abgeschickt werden
 	
 
