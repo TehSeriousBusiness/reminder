@@ -44,8 +44,23 @@ class UserTest < ActiveSupport::TestCase
     assert user.save()
     
     #DB must have exact 1 entry!
-    #TODO 
-    assert false
+    found = User.find_by_username("Hans")
+    assert found == nil
+    
+    found = User.find_by_username("Peter")
+    assert found != nil
+    assert_equal "Peter", found.username
+    assert_equal "Jarqueli42", found.password
+  end
+  
+  test "Valid - Store and find user from DB" do
+    user = User.new(:username => "Hans", :password => "Jarqueli42")
+    assert user.save()
+    found = User.find_by_username("Hans")
+    
+    assert found != nil
+    assert_equal "Hans", found.username
+    assert_equal "Jarqueli42", found.password
   end
   
   test "Invalid - Minimum length - username" do
