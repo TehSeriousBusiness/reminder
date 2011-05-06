@@ -1,19 +1,19 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "Missing password" do
+  test "Invalid - Missing password" do
     #No password is set.
     user = User.new(:username => "Jarqueline")
     assert !(user.save()), 'password required'
   end
   
-  test "Missing username" do
+  test "Invalid - Missing username" do
       #No username is set.
       user = User.new(:password => "Jarqueli42")
       assert !(user.save()), 'username required'
   end
     
-  test "Duplicate username" do
+  test "Invalid - Duplicate username" do
       #No username is set.
       user1 = User.new(:username => "Jarqueline", :password => "Jarqueli42")
       user2 = User.new(:username => "Jarqueline", :password => "Jarqueli42")
@@ -23,51 +23,68 @@ class UserTest < ActiveSupport::TestCase
       assert !(user2.save()), 'Username already exist'
   end
   
-  test "Minimum length - username" do
+  test "Invalid - Name already in use" do
+    user1 = User.new(:username => "Hans", :password => "Jarqueli42")
+    user2 = User.new(:username => "Peter", :password => "Jarqueli42")
+    
+    #Store both in db, ok
+    assert user1.save()
+    assert user2.save()
+    
+    #Change name and try to store again... should failing now!
+    user1.username = user2.username
+    assert !user1.save()
+  end
+  
+  test "Valid - Change name and check DB" do
+    user = User.new(:username => "Hans", :password => "Jarqueli42")
+    assert user.save()
+    
+    user.username = "Peter"
+    assert user.save()
+    
+    #DB must have exact 1 entry!
+    #TODO 
+    assert false
+  end
+  
+  test "Invalid - Minimum length - username" do
       user = User.new(:username => "AB", :password => "Jarqueli42")
-      
       assert !(user.save()), 'Invalid length, username too small'
   end
   
-  test "Minimum length - password" do
+  test "Invalid - Minimum length - password" do
       user = User.new(:username => "Jarqueline", :password => "42")
-      
       assert !(user.save()), 'Invalid length, password too small'
   end
   
-  test "Maximum length - username" do
+  test "Invalid - Maximum length - username" do
         user = User.new(:username => "12345678901", :password => "Jarqueli42")
-        
         assert !(user.save()), 'Invalid length, username too big'
   end
     
-  test "Maximum length - password" do
+  test "Invalid - Maximum length - password" do
       user = User.new(:username => "Jarqueline", :password => "12345678901")
-      
       assert !(user.save()), 'Invalid length, password too big'
   end
   
-  test "Validate characters - whitespace - username" do
+  test "Invalid - Validate characters - whitespace - username" do
         user = User.new(:username => "Jar ueline", :password => "Jarqueli42")
-        
         assert !(user.save()), 'Invalid characters in username'
   end
     
-  test "Validate characters - whitespace - password" do
+  test "Invalid - Validate characters - whitespace - password" do
       user = User.new(:username => "Jarqueline", :password => "Jarq eli42")
-      
       assert !(user.save()), 'Invalid characters in password'
   end
   
-  test "Validate characters - special characters - username" do
+  test "Invalid - Validate characters - special characters - username" do
         user = User.new(:username => "J{(a#+=}ne", :password => "Jarqueli42")
-        
         assert !(user.save()), 'Invalid special characters in username'
   end
     
-  test "Validate characters - special characters - password" do
+  test "Invalid - Validate characters - special characters - password" do
       user = User.new(:username => "Jarqueline", :password => "J{(a#+=e42")
-      
       assert !user.save, 'Invalid special characters in password'
   end
 end
