@@ -38,7 +38,9 @@ class Job < ActiveRecord::Base
   # email check from http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000084
   #validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   #                                              mail      @  host         . topdomain      ;
+  validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_format_of :destinations, :with => "(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+"
+  validates_format_of :destinations, :with => (/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+
   
 #  # email check from http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000084
 #  # TODO change regex to allow more than one email like (emails are seperated by ";"
