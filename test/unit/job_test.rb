@@ -207,5 +207,11 @@ class JobTest < ActiveSupport::TestCase
   #### XYZ START ####
 
   #### XYZ END ####
+  
+  ### SPEZIAL reggex test
+  test "checking Regex 01" do
+          @validJob.destinations = "asdf"
+          assert !@validJob.save(), @validJob.errors.inspect
+        end
 
 end
