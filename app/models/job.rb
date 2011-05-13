@@ -39,12 +39,17 @@ class Job < ActiveRecord::Base
   # validates_format_of :destinations, :with => "(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+"
   #validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,};)\Z/i
   validate :email => true
+
+  
   def email
-    emailArray = :destinations.split(";")
+    emailArray = :destinations.split(/;+/)
     emailArray.each do |email|
-      puts "test"
-#      if(!/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(email))
-        if(!/\Aasdf\Z/i.match(email))
+      #      puts "email:" + email +"!END"
+      #      if(email == nil)
+      #        puts "nil email found"
+      #      end
+      if(!/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(email))
+        #        puts "invalid " + email
         record.errors[attribute] << "destination " + email + " is wrong"
       end
     end
