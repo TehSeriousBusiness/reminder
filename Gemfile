@@ -35,7 +35,6 @@ gem 'sqlite3'
 #end 
 
 # use package "mail" in every enviroment
-<<<<<<< HEAD
 gem 'mail' 
 =======
 gem 'mail' 
@@ -43,4 +42,3 @@ gem 'mail'
 # group :deployment, :test, :production do
 # 	gem 'capistrano'
 # end
->>>>>>> 53d907f51ca258a3e8bca3562c4212cff4bef4c2
