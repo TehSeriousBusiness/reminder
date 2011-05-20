@@ -6,3 +6,35 @@
   <%= submit_tag "Login" %>
   <%= submit_tag "LoginAnon" %>
 <% end %>
+
+
+<h1>Welcome Page</h1>
+
+<!-- LOGIN PART -->
+<table>
+<% form_for :user, @user do |loginForm| %>
+	<tr>
+		<td>Username:</td>
+		<td><%= loginForm.text_field :username %><td>
+	</tr>
+	<tr>
+		<td>Password:</td>
+		<td><%= loginForm.text_field :password %><td>
+	</tr>  
+	<tr>
+		<td><p class="button"><%= submit_tag "Log in" %></td>
+	</tr>
+<% end %>
+</table>
+
+
+
+<!-- REGISTER PART -->
+<br>Register As <%= link_to 'New User', new_user_path %>
+
+
+
+<!-- ANON-SEND PART -->
+<!--<br>< link_to 'Send Msg' sendmsg_path >-->
+<br>if user is not logged in, show anon sendmsg
+<br>if a user is logged in, show normal sendmsg 

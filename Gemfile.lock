@@ -71,6 +71,5 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  mail
   rails (= 3.0.5)
   sqlite3
