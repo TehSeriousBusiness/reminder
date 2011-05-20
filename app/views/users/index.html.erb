@@ -1,5 +1,11 @@
 <h1>Listing users</h1>
+<% if @user.nil? %>
+ not logged in
+	<% else %>
+  <h1>Account Info</h1>
 
+  <p>Your username is <%= @user %> 
+  <% end %>
 <table>
   <tr>
     <th>Username</th>

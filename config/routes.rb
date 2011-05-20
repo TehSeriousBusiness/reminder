@@ -6,10 +6,20 @@ Reminder::Application.routes.draw do
   resources :mail_servers
 
   resources :users
-
+  
+  ## creates a new route host.de/login   using the users controller
+  match "/" => "users#login"
+  match "/myPage" => "users#myPage"
+#  match "/login" => "users#login"
+  match "/logout" => "users#logout"
+  
+  match "/process_login" => "users#process_login"
+  
+#  match "/login/process" => "users#process_login"
+#  map.search “search”, :controller => “search”
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

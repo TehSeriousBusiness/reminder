@@ -5,7 +5,7 @@
 # TODO add a validation to check if the initiator exists (this means: username exists within the DB) - should this reallyy be validated within the job model?
 class Job < ActiveRecord::Base
   #belongs_to :user
-  
+
   ##  t.string :initiator
   ##  t.text :destinations
   ##  t.string :subject
@@ -24,41 +24,37 @@ class Job < ActiveRecord::Base
 
   validates_presence_of(:repetition)
   validates_presence_of(:delay)
-  
+
   # validate delay = 0++
   validates_numericality_of :delay, :only_integer => true, :greater_than => -1
-  
+
   # validate repetition = 0++
   validates_numericality_of :repetition, :only_integer => true, :greater_than => -1
 
   validates_length_of :subject, :maximum => 254, :too_long => "subject is too long (%d), subject cannot be saved"
-    
+
   validates_length_of :content, :maximum => 254, :too_long => "content is too long (%d), this cannot be"
-
-  # email check from http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000084
-  #validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   #                                              mail      @  host         . topdomain      ;
-  validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of :destinations, :with => "(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+"
-  validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,};)\Z/i
+  #  validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  # validates_format_of :destinations, :with => "(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+"
+  #validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,};)\Z/i
+  validate :email => true
   
-#  # email check from http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000084
-#  # TODO change regex to allow more than one email like (emails are seperated by ";"
-#  # like: email1@host1.de;email2@host2.com
-#  # this second form comes from http://my.rails-royce.org/2010/07/21/email-validation-in-ruby-on-rails-without-regexp/
-#  #validates :destinations, :email => true
-#
-#  # repetition restriction 1-maxint  -> greater_than => 0
-#  #validates_numericality_of(:repetition, {:greater_than => 0, :message => "use a integer between 1-maxint"})
-#  # testet ob repetiton nur ein int wert ist
-#  validates_numericality_of(:repetition, {:greater_than => 0, :only_integer => true, :message => "use a integer between 1-maxint"})
-#
-#  # delay restriction 0-maxint  -> greater_than => -1
-#  validates_numericality_of(:delay, {:greater_than => -1, :message => "use a integer between 0-maxint"})
-#  # testet ob repetiton nur ein int wert ist
-#  #validates_numericality_of(:delay, {:greater_than => -1, only_integer => true, :message => "use a integer between 0-maxint"})
-#
-#  # kickOff restriction, must be in the future
-#  # TODO
+  def email
+    emailArray = :destinations.split(";")
+    emailArray.each do |email|
+      puts "test"
+#      unless(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(email))
+#        record.errors[attribute] << "destination " + email + " is wrong"
+#      end
+      if(!/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(email))
+              record.errors[attribute] << "destination " + email + " is wrong"
+            end
+    end
+  end
 
+  def expiration_date_cannot_be_in_the_past
+    errors.add(:expiration_date, "can't be in the past") if
+    !expiration_date.blank? and expiration_date < Date.today
+  end
 end

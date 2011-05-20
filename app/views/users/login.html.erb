@@ -1,0 +1,8 @@
+<%= form_tag(:method => "post", :action => 'process_login') do %>
+  <%= label_tag(:q, "Login As:") %>
+  <%= text_field_tag(:username) %>
+  <%= label_tag(:q, "Password:") %>
+  <%= text_field_tag(:password) %>
+  <%= submit_tag "Login" %>
+  <%= submit_tag "LoginAnon" %>
+<% end %>
