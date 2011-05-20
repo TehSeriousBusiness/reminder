@@ -107,11 +107,11 @@ class JobTest < ActiveSupport::TestCase
     @validJob.destinations = "@host.de"
     assert !@validJob.save(), @validJob.errors.inspect
   end
-  
+
   test "Invalid - Validate Parameter - destinations - invalid destinations doubleMail 01" do
-      @validJob.destinations = "email1@host1.de;email12@host2.awe"
-      assert !@validJob.save(), @validJob.errors.inspect
-    end
+    @validJob.destinations = "email1@host1.de;email12@host2.awe"
+    assert !@validJob.save(), @validJob.errors.inspect
+  end
 
   test "Valid - Validate Parameter - initiator - valid destinations 01" do
     @validJob.destinations = "mail.mit@punkt.com"
@@ -207,5 +207,16 @@ class JobTest < ActiveSupport::TestCase
   #### XYZ START ####
 
   #### XYZ END ####
+
+  ### SPEZIAL reggex test
+  test "check regex 01" do
+    email = "bla"
+    assert email.match("bla")
+  end
+
+  test "check regex 02" do
+    @validJob.destinations = "notmatching"
+    assert !@validJob.save(), @validJob.errors.inspect
+  end
 
 end
