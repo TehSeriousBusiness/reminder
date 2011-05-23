@@ -96,9 +96,9 @@ class UsersController < ApplicationController
   def process_login
     # check if user pressed anon button
     if(params[:commit] == "LoginAnon")
-      @user = User.find_by_username("anon")
+      @user = User.find_by_username("Anon")
       session[:id] = @user.id
-      redirect_to session[:return_to] || '/anonPARTY/'+params[:username]
+      redirect_to session[:return_to] || '/myPage'
     else
       if (user = User.authenticate(params[:username], params[:password]))
         session[:id] = user.id # Remember the user's id during this session
@@ -117,7 +117,7 @@ class UsersController < ApplicationController
   def logout
     reset_session
     flash[:message] = 'Logged out.'
-#    redirect_to :action => 'login'
+    redirect_to :action => 'login'
   end
   #  def process_login
   #    redirect_to session[:return_to] || '/'
