@@ -1,8 +1,16 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+set :application, "Reminder"
+set :repository,  "ssh://git@kater.homelinux.org:23/reminder"
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+
+# use this branch as the basis for deployment
+set :branch, "devD_Capistrano"
+
+# use this if you do NOT want to clone the complete repo every time the App is deployed
+set :deploy_via, :remote_cache
+
+
 
 role :web, "your web-server here"                          # Your HTTP server, Apache/etc
 role :app, "your app-server here"                          # This may be the same as your `Web` server
