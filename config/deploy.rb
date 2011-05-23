@@ -32,7 +32,11 @@ role :db,  "#{domain}", :primary => true # This is where Rails migrations will r
 
 
 #### USING THIS GUIDE https://github.com/capistrano/capistrano/wiki/2.x-From-The-Beginning
-set :deploy_to, "/home/sweng/www"
+set :deploy_to, "/srv/www/swEng/"
 set :user, "sweng"
 set :use_sudo, false
+ssh_options[:forward_agent] = true
 
+
+
+#if [ -d /srv/www/swEng/shared/cached-copy ]; then cd /srv/www/swEng/shared/cached-copy && git fetch -q origin && git fetch --tags -q origin && git reset -q --hard 25609f0b03b924916631174cf61951679ca8e58e && git clean -q -d -x -f; else git clone -q  ssh://git@kater.homelinux.org:23/reminder /srv/www/swEng/shared/cached-copy && cd /srv/www/swEng/shared/cached-copy && git checkout -q -b deploy 25609f0b03b924916631174cf61951679ca8e58e; fi
