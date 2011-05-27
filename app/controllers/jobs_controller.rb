@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.xml
   def index
-    @jobs = Job.all
+    @jobs = @user.jobs
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.xml
   def show
-    @job = Job.find(params[:id])
+    @job = @user.jobs.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +24,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   # GET /jobs/new.xml
   def new
-    @job = Job.new
+    @job = @user.jobs.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +34,13 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
-    @job = Job.find(params[:id])
+    @job = @user.jobs.find(params[:id])
   end
 
   # POST /jobs
   # POST /jobs.xml
   def create
-    #@job = current_user.jobs.new(params[:job])
+    @job = @user.jobs.new(params[:job])
 
     respond_to do |format|
       if @job.save
@@ -56,7 +56,7 @@ class JobsController < ApplicationController
   # PUT /jobs/1
   # PUT /jobs/1.xml
   def update
-    @job = Job.find(params[:id])
+    @job = @user.jobs.find(params[:id])
 
     respond_to do |format|
       if @job.update_attributes(params[:job])
@@ -72,7 +72,7 @@ class JobsController < ApplicationController
   # DELETE /jobs/1
   # DELETE /jobs/1.xml
   def destroy
-    @job = Job.find(params[:id])
+    @job = @user.jobs.find(params[:id])
     @job.destroy
 
     respond_to do |format|

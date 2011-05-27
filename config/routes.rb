@@ -8,6 +8,7 @@ Reminder::Application.routes.draw do
   resources :users
   
   ## creates a new route host.de/login   using the users controller
+  match "/users/new" => "users#new"
   match "/" => "users#login"
   match "/myPage" => "users#myPage"
 #  match "/login" => "users#login"

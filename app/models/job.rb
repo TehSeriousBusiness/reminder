@@ -16,7 +16,7 @@ class Job < ActiveRecord::Base
   ##  t.integer :delay
 
   ### validate presences
-  validates_presence_of(:initiator)
+  #validates_presence_of(:initiator)
   validates_presence_of(:destinations)
   validates_presence_of(:subject)
   validates_presence_of(:content)

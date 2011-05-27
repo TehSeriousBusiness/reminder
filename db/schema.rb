@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20110408121016) do
   end
 
   create_table "jobs", :force => true do |t|
-    t.string   "initiator"
+    t.integer  "user_id"
     t.text     "destinations"
     t.string   "subject"
     t.text     "content"

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # has_many :jobs
+  has_many :jobs
 
   # Urgently needed!
   validates_presence_of :username
