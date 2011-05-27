@@ -39,38 +39,15 @@ class Job < ActiveRecord::Base
   # validates_format_of :destinations, :with => "(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i;)+"
   #validates_format_of :destinations, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,};)\Z/i
   validate :email => true
-<<<<<<< HEAD
-  
-  def email
-    emailArray = :destinations.split(";")
-    emailArray.each do |email|
-      puts "test"
-#      unless(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(email))
-#        record.errors[attribute] << "destination " + email + " is wrong"
-#      end
-      if(!/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(email))
-              record.errors[attribute] << "destination " + email + " is wrong"
-            end
-=======
 
   
   def email
     emailArray = :destinations.split(/;+/)
     emailArray.each do |email|
-      #      puts "email:" + email +"!END"
-      #      if(email == nil)
-      #        puts "nil email found"
-      #      end
       if(!/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(email))
         #        puts "invalid " + email
         record.errors[attribute] << "destination " + email + " is wrong"
       end
->>>>>>> 0fbeb479b44345bbfdb8f388c071e32648365cb0
     end
-  end
-
-  def expiration_date_cannot_be_in_the_past
-    errors.add(:expiration_date, "can't be in the past") if
-    !expiration_date.blank? and expiration_date < Date.today
   end
 end
