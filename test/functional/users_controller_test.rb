@@ -8,42 +8,51 @@ class UsersControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:users)
+    assert_not_nil assigns(:user)
+	
+	assert_select 'title', 'Reminder'
+  assert_match /Reminder/, response.body
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
+	test "create user" do
+	  post :create, :user => {:username => 'hans', :password => 'test'}
+	  assert_response :success
+	  assert_match /Return.*Welcome.*Page/, response.body
+	 end
 
-  test "should create user" do
-    assert_difference('User.count') do
-      post :create, :user => @user.attributes
-    end
+  # test "should get new" do
+    # get :new
+    # assert_response :success
+  # end
 
-    assert_redirected_to user_path(assigns(:user))
-  end
+  # test "should create user" do
+    # assert_difference('User.count') do
+      # post :create, :user => @user.attributes
+    # end
 
-  test "should show user" do
-    get :show, :id => @user.to_param
-    assert_response :success
-  end
+    # assert_redirected_to user_path(assigns(:user))
+  # end
 
-  test "should get edit" do
-    get :edit, :id => @user.to_param
-    assert_response :success
-  end
+  # test "should show user" do
+    # get :show, :id => @user.to_param
+    # assert_response :success
+  # end
 
-  test "should update user" do
-    put :update, :id => @user.to_param, :user => @user.attributes
-    assert_redirected_to user_path(assigns(:user))
-  end
+  # test "should get edit" do
+    # get :edit, :id => @user.to_param
+    # assert_response :success
+  # end
 
-  test "should destroy user" do
-    assert_difference('User.count', -1) do
-      delete :destroy, :id => @user.to_param
-    end
+  # test "should update user" do
+    # put :update, :id => @user.to_param, :user => @user.attributes
+    # assert_redirected_to user_path(assigns(:user))
+  # end
 
-    assert_redirected_to users_path
-  end
+  # test "should destroy user" do
+    # assert_difference('User.count', -1) do
+      # delete :destroy, :id => @user.to_param
+    # end
+
+    # assert_redirected_to users_path
+  # end
 end

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :set_user
+#  after_filter :ifNotLoggedIn
 
   protected
   def set_user
@@ -18,5 +19,13 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.request_uri
     flash[:error] = 'Oops. You need to login before you can view that page.'
     redirect_to :controller => 'users', :action => 'login'
+  end
+  
+  def ifNotLoggedIn
+	if request.request_uri != "/"
+		if @user.nil?
+			redirect_to session[:return_to] || '/'
+		end
+	end
   end
 end

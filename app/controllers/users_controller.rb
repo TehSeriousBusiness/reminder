@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 	unless session[:id].nil?
 		@user = User.find(session[:id]).username
 	end
-    @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb

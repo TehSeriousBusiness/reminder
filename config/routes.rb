@@ -11,7 +11,6 @@ Reminder::Application.routes.draw do
   match "/users/new" => "users#new"
   match "/" => "users#login"
   match "/myPage" => "users#myPage"
-#  match "/login" => "users#login"
   match "/logout" => "users#logout"
   
   match "/process_login" => "users#process_login"
