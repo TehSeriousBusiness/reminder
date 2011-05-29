@@ -42,8 +42,7 @@
 #if [ -d /srv/www/swEng/shared/cached-copy ]; then cd /srv/www/swEng/shared/cached-copy && git fetch -q origin && git fetch --tags -q origin && git reset -q --hard 25609f0b03b924916631174cf61951679ca8e58e && git clean -q -d -x -f; else git clone -q  ssh://git@kater.homelinux.org:23/reminder /srv/www/swEng/shared/cached-copy && cd /srv/www/swEng/shared/cached-copy && git checkout -q -b deploy 25609f0b03b924916631174cf61951679ca8e58e; fi
 
 default_run_options[:pty] = true  # Must be set for the password prompt from git to work
-#set :repository, "git@github.com:TehSeriousBusiness/reminder.git"  # Your clone URL
-set :repository, "ssh://git@kater.homelinux.org:23/reminder"  # Your clone URL
+set :repository, "git@github.com:TehSeriousBusiness/reminder.git"  # Your clone URL
 set :scm, "git"
 set :user, "sweng"  # The server's user for deploys
 #set :scm_passphrase, "p@ssw0rd"  # The deploy user's password
