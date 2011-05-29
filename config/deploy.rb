@@ -32,7 +32,7 @@
 
 
 ### USING THIS GUIDE https://github.com/capistrano/capistrano/wiki/2.x-From-The-Beginning
- set :deploy_to, "/srv/www/swEng/"
+ set :deploy_to, "/srv/www/swEng/reminder/"
  #set :user, "sweng"
  set :use_sudo, false
 # ssh_options[:forward_agent] = true
