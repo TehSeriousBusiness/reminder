@@ -14,7 +14,6 @@ class JobTest < ActiveSupport::TestCase
   ##  t.integer :repetition
   ##  t.integer :delay
   ### init predefined parameters to use in all "missing paramteres tests"
-  @@testVarInitiator = "testUserName"
   @@testVarDestinations = "dest1@host1.de;dest2@host2.com;dest3@host3.org"
   @@testVarSubject = "This is a Subject"
   @@testVarContent = "This is a very long Text, This is also the Content of the Email"
@@ -23,9 +22,9 @@ class JobTest < ActiveSupport::TestCase
   @@testVarRepetition = 4
   @@testVarDelay = 60 # delay is 60 seconds
   ## default without missing parameters
-  #job = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
+  #job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
   def setup
-    @validJob = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff => @@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
+    @validJob = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff => @@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
   end
 
   test "Valid - Creating Valid Job  Object" do
@@ -38,37 +37,37 @@ class JobTest < ActiveSupport::TestCase
   end
 
   test "Invalid - Missing Parameters - destinations" do
-    job = Job.new(:initiator => @@testVarInitiator, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
+    job = Job.new(:subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
     assert !job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - subject" do
-    job = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
+    job = Job.new(:destinations => @@testVarDestinations, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
     assert !job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - content" do
-    job = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :subject => @@testVarSubject,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
+    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
     assert !job.save(), job.errors.inspect
   end
 
   test "Valid - Missing Parameters - attachement" do
-    job = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent, :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
+    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent, :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
     assert job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - kickOff" do
-    job = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :repetition => @@testVarRepetition, :delay => @@testVarDelay)
+    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :repetition => @@testVarRepetition, :delay => @@testVarDelay)
     assert !job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - repetition" do
-    job = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :delay => @@testVarDelay)
+    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :delay => @@testVarDelay)
     assert !job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - delay" do
-    job = Job.new(:initiator => @@testVarInitiator, :destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition)
+    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition)
     assert !job.save(), job.errors.inspect
   end
   #### Missing Parameters END ####
