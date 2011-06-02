@@ -34,22 +34,7 @@ class Job < ActiveRecord::Base
   validates_length_of :content, :maximum => 254, :too_long => "content is too long (%d), this cannot be"
   	
   # Tested with http://www.rubular.com/, validates multiple email-addresses
-  @@regex = /\A(([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,});+)*(([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,});*\z)/i
+  validates_format_of :destinations, :with => /\A(([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,});+)*(([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,});*\z)/i
   
-  validates_format_of :destinations, :with => @@regex
-  
-  
-  #validate :email => true
-  
-  # def email
-    # emailArray = :destinations.split(/;+/)
-    # emailArray.each do |email|
-      # if(!/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(email))
-			# puts "invalid " + email
-			# record.errors[attribute] << "destination " + email + " is wrong"
-		# else
-			# puts "invalid " + email
-      # end
-    # end
-  # end
+  validates_date :kickOff, :on_or_after => Time.now, :on_or_after_message => "time must be in the future"
 end

@@ -40,3 +40,6 @@ gem 'sqlite3'
 group :deployment, :test do
  	gem 'capistrano'
  end
+
+ 
+gem 'validates_timeliness', '~> 3.0.2'
