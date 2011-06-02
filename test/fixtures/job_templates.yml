@@ -1,0 +1,9 @@
+one:
+  templateName: Birthday
+  templateSubject: Happy Birthday!
+  templateContent: Heyho, alles gute zum Geburtstag... !
+
+two:
+  templateName: NoSpam
+  templateSubject: PEW PEW PEW
+  templateContent: BAM BAM BAM, SPAM INCOMING!

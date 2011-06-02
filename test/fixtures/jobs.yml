@@ -1,0 +1,15 @@
+one:
+  destinations: emailAddress@gmx.net
+  subject: First
+  content: Content number one!
+  kickOff: <%= Time.now %>
+  repetition: 1
+  delay: 42
+
+two:
+  destinations: emailAddress@gmx.net;emailAddress@web.de
+  subject: Second
+  content: Content number two!
+  kickOff: <%= 2.days.from_now %>
+  repetition: 0
+  delay: 3600
