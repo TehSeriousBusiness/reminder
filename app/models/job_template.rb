@@ -1,10 +1,8 @@
 class JobTemplate < ActiveRecord::Base
-  
-  # Adding templateName to the attr_accessor list cause failure.
-  attr_accessor :templateSubject, :templateContent
-  
   # Urgently needed!
   validates_presence_of :templateName
+  validates_presence_of :templateSubject
+  validates_presence_of :templateContent
   
   # TemplateName is one of a kind.
   validates_uniqueness_of :templateName
