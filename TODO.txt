@@ -25,3 +25,12 @@ fürs nächste mal (vom 29.04 ausgehend)
  - mehr festfälle schreiben Testfälle
  - authentifizierung angucken, für die login seite
  - Jobformular
+ 
+ 
+ 
+ 
+ 
+Important commands:
+	- bundle install
+	- gem install rake
+	- bundle update
