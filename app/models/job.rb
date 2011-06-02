@@ -36,5 +36,6 @@ class Job < ActiveRecord::Base
   # Tested with http://www.rubular.com/, validates multiple email-addresses
   validates_format_of :destinations, :with => /\A(([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,});+)*(([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,});*\z)/i
   
-  validates_date :kickOff, :on_or_after => Time.now, :on_or_after_message => "time must be in the future"
+  validates_date :kickOff, :on_or_after => Time.now, :on_or_after_message => "time must be in the future",
+						   :before => 2.years.from_now, :before_message => "please choose an earlier point in time"
 end
