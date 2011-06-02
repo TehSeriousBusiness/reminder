@@ -31,11 +31,6 @@ class JobTest < ActiveSupport::TestCase
     assert @validJob.save(), @validJob.errors.inspect
   end
 
-  test "Invalid - Missing Parameters - initiator" do
-    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent, :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
-    assert !job.save(), job.errors.inspect
-  end
-
   test "Invalid - Missing Parameters - destinations" do
     job = Job.new(:subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
     assert !job.save(), job.errors.inspect
@@ -107,9 +102,9 @@ class JobTest < ActiveSupport::TestCase
     assert !@validJob.save(), @validJob.errors.inspect
   end
 
-  test "Invalid - Validate Parameter - destinations - invalid destinations doubleMail 01" do
+  test "Valid - Validate Parameter - destinations - invalid destinations doubleMail 01" do
     @validJob.destinations = "email1@host1.de;email12@host2.awe"
-    assert !@validJob.save(), @validJob.errors.inspect
+    assert @validJob.save(), @validJob.errors.inspect
   end
 
   test "Valid - Validate Parameter - initiator - valid destinations 01" do
@@ -167,9 +162,9 @@ class JobTest < ActiveSupport::TestCase
     assert !@validJob.save(), @validJob.errors.inspect
   end
 
-  test "Invalid - Validate Parameter - repetition - number <= 0    -> no sense 0 " do
+  test "Valid - Validate Parameter - repetition - zero ok, no limit" do
     @validJob.repetition = 0
-    assert !@validJob.save(), @validJob.errors.inspect
+    assert @validJob.save(), @validJob.errors.inspect
   end
 
   test "Valid - Validate Parameter - repetition - number = 1" do
