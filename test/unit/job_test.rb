@@ -31,6 +31,11 @@ class JobTest < ActiveSupport::TestCase
 	job = Job.new(valid_job_attributes)
 	assert job.save()
   end
+  
+  test "Valid - Belongs to Admin - Fixtures" do
+	job = jobs(:one)
+	assert_equal job.user.username, "Admin"
+  end
 
   test "Valid - Creating Valid Job  Object" do
     assert @validJob.save(), @validJob.errors.inspect

@@ -5,6 +5,7 @@ one:
   kickOff: <%= Time.now %>
   repetition: 1
   delay: 42
+  user: one
 
 two:
   destinations: emailAddress@gmx.net;emailAddress@web.de
@@ -13,3 +14,4 @@ two:
   kickOff: <%= 2.days.from_now %>
   repetition: 0
   delay: 3600
+  user: one

@@ -35,3 +35,4 @@ Important commands:
 	- bundle install
 	- gem install rake
 	- bundle update
+	- rake db:fixtures:load FIXTURES=ymlFile1,ymlFile2,...
