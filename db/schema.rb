@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20110408121016) do
     t.string   "subject"
     t.text     "content"
     t.binary   "attachement"
-    t.date     "kickOff"
+    t.datetime "kickOff"
     t.integer  "repetition"
     t.integer  "delay"
     t.datetime "created_at"

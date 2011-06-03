@@ -6,7 +6,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :subject
       t.text :content
       t.binary :attachement
-      t.time :kickOff
+      t.datetime :kickOff
       t.integer :repetition
       t.integer :delay
 

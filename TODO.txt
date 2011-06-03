@@ -5,8 +5,6 @@
 	- user test (functional test?): delete user -> all jobs removed (user = hasmany :jobs; job belongs_to :user)
 
 
-
-
 USER.FIND! findet user objekt in der DB
 z.B
 
@@ -35,4 +33,4 @@ Important commands:
 	- bundle install
 	- gem install rake
 	- bundle update
-	- rake db:fixtures:load FIXTURES=ymlFile1,ymlFile2,...
+	- rake db:fixtures:load FIXTURES=job_templates.yml,jobs.yml,mail_servers.yml,users.yml
