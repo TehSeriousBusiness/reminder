@@ -26,6 +26,11 @@ class JobTest < ActiveSupport::TestCase
   def setup
     @validJob = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff => @@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
   end
+  
+  test "valid_job_attributes" do
+	job = Job.new(valid_job_attributes)
+	assert job.save()
+  end
 
   test "Valid - Creating Valid Job  Object" do
     assert @validJob.save(), @validJob.errors.inspect

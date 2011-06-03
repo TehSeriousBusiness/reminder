@@ -11,6 +11,10 @@ require 'test_helper'
 # Total tests : 19, expected failures : 10
 
 class MailServerTest < ActiveSupport::TestCase
+	test "valid_mail_server_attributes" do
+		mailServer = MailServer.new(valid_mail_server_attributes)
+		assert mailServer.save()
+	end
   
   test "Invalid - Missing address" do
     mailServer = MailServer.new(:password => "aSimplePassword", :host => "smtp.web.de", :port => 80)

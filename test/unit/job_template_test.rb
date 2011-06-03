@@ -15,6 +15,11 @@ class JobTemplateTest < ActiveSupport::TestCase
 	end
 
   
+	test "valid_job_template_attributes" do
+		jobTemplate = JobTemplate.new(valid_job_template_attributes)
+		assert jobTemplate.save()
+	end
+  
   test "Invalid - Missing templateName" do
     #No templateName is set.
     jobTemplate = JobTemplate.new(:templateSubject => "Unknown subject", :templateContent => "Unknown content")

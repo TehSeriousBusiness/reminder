@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+	test "valid_user_attributes" do
+		user = User.new(valid_user_attributes)
+		assert user.save()
+	end
+	
+
   test "Invalid - Missing password" do
     #No password is set.
     user = User.new(:username => "Jarqueline")
