@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def ifNotLoggedIn
 	if request.request_uri != "/"
 		if @user.nil?
-			redirect_to session[:return_to] || '/'
+			redirect_to '/'
 		end
 	end
   end

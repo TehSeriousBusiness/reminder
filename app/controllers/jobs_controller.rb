@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-before_filter :login_required
+	before_filter :login_required
   # GET /jobs
   # GET /jobs.xml
   def index
@@ -14,7 +14,11 @@ before_filter :login_required
   # GET /jobs/1
   # GET /jobs/1.xml
   def show
-    @job = @user.jobs.find(params[:id])
+    @job = @user.jobs.find_by_id(params[:id])
+	
+	if @job.nil?
+		return redirect_to '/'
+	end
 
     respond_to do |format|
       format.html # show.html.erb
