@@ -89,4 +89,17 @@ class JobsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def destroy_all
+	puts "DESTROYING ALL - HELLO WORLD!"
+  
+	@user.jobs.each do |currentJob|
+		currentJob.destroy
+	end
+	
+    respond_to do |format|
+      format.html { redirect_to(jobs_url) }
+      format.xml  { head :ok }
+    end
+  end
 end
