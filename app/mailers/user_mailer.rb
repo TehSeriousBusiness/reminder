@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "max.mustermann@gmx.net"
+  default :from => "teh.serious.business@gmx.net"
   
   def send_mail(job)
     @job = job
@@ -7,10 +7,10 @@ class UserMailer < ActionMailer::Base
 	# add attachments here...
     # attachments["rails.png"] = File.read("#{Rails.root}/public/images/rails.png")
 	
-	#destinations
+	#send to each recipient.
 	emailArray = @job.destinations.split(/;+/)
 	emailArray.each do |email|
-		mail(:to => email, :subject => @job.subject, :body => @job.content)
+		mail(:to => email, :subject => @job.subject).deliver
 	end
   end
 end
