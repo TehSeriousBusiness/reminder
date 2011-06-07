@@ -7,3 +7,9 @@ ActionMailer::Base.smtp_settings = {
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
+
+# setup
+ActionMailer::Base.register_interceptor(UserMailer)
+
+# teardown
+# ActionMailer::Base.register_observer(UserMailer)

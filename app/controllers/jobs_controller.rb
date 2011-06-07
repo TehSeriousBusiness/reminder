@@ -33,12 +33,12 @@ class JobsController < ApplicationController
   def new
     @job = @user.jobs.new
 	
-	#default values...
+	# Set default values here!
 	@job.destinations = "no-reply@gmx.net"
 	@job.subject = "A Simple Subject"
 	@job.content = "This is a simple test content!\n\n#{Time.now.localtime}"
-	@job.repetition = 1
-	@job.delay = 0
+	@job.repetition = 2
+	@job.delay = 60
 
     respond_to do |format|
       format.html # new.html.erb
@@ -60,7 +60,7 @@ class JobsController < ApplicationController
       if @job.save
 	  
 		#void method
-		#UserMailer.send_mail(@job)
+		UserMailer.send_mail(@job)
 	  
         format.html { redirect_to(@job, :notice => 'Job was successfully created.') }
         format.xml  { render :xml => @job, :status => :created, :location => @job }

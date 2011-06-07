@@ -35,7 +35,7 @@ gem 'sqlite3'
 #end 
 
 # use package "mail" in every enviroment
-# gem 'mail'  
+gem 'mail'  
 
 group :deployment, :test do
  	gem 'capistrano'
@@ -43,3 +43,5 @@ group :deployment, :test do
 
  
 gem 'validates_timeliness', '~> 3.0.2'
+
+gem 'delayed_job'

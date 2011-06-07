@@ -1,5 +1,6 @@
 class UserMailer < ActionMailer::Base
   default :from => "teh.serious.business@gmx.net"
+  #"Unknown <teh.serious.business@gmx.net>"
   
   def send_mail(job)
     @job = job
@@ -12,5 +13,16 @@ class UserMailer < ActionMailer::Base
 	emailArray.each do |email|
 		mail(:to => email, :subject => @job.subject).deliver
 	end
+  end
+  
+  # setup
+  def self.delivering_email(message)
+    message.subject = "#{message.to} #{message.subject}"
+    message.to = "manuel.hager@gmx.de"
+  end
+  
+  # teardown
+  def self.delivered_email(message)
+    # do something...
   end
 end
