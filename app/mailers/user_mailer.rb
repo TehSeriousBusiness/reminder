@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
-  default :from => "teh.serious.business@gmx.net"
-  #"Unknown <teh.serious.business@gmx.net>"
+	default	:from => "Max Mustermann <max.mustermann@gmx.de>",
+			:return_path => 'Max Mustermann <teh.serious.business@gmx.net>'
   
   def send_mail(job)
     @job = job

@@ -6,6 +6,7 @@ class JobsController < ApplicationController
     @jobs = @user.jobs
 	
 	Background.instance.sendLater
+	# Background.instance.helloWorld
 
     respond_to do |format|
       format.html # index.html.erb

@@ -9,4 +9,10 @@ class Background
 			puts "diff: " + diff.to_s
 		end
 	end
+	
+	def helloWorld
+		4.times {
+			puts 'Hello World'
+		}
+	end
 end
