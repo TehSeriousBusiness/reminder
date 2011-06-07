@@ -4,6 +4,8 @@ class JobsController < ApplicationController
   # GET /jobs.xml
   def index
     @jobs = @user.jobs
+	
+	Background.instance.sendLater
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,6 +32,13 @@ class JobsController < ApplicationController
   # GET /jobs/new.xml
   def new
     @job = @user.jobs.new
+	
+	#default values...
+	@job.destinations = "no-reply@gmx.net"
+	@job.subject = "A Simple Subject"
+	@job.content = "This is a simple test content!\n\n#{Time.now.localtime}"
+	@job.repetition = 1
+	@job.delay = 0
 
     respond_to do |format|
       format.html # new.html.erb
@@ -51,7 +60,7 @@ class JobsController < ApplicationController
       if @job.save
 	  
 		#void method
-		UserMailer.send_mail(@job)
+		#UserMailer.send_mail(@job)
 	  
         format.html { redirect_to(@job, :notice => 'Job was successfully created.') }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
