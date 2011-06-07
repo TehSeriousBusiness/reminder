@@ -5,8 +5,8 @@ class JobsController < ApplicationController
   def index
     @jobs = @user.jobs
 	
-	Background.instance.sendLater
-	# Background.instance.helloWorld
+	# TODO, remove
+	# Background.instance.destroyAll
 
     respond_to do |format|
       format.html # index.html.erb
@@ -61,7 +61,10 @@ class JobsController < ApplicationController
       if @job.save
 	  
 		#void method
-		UserMailer.send_mail(@job)
+		#UserMailer.send_mail(@job)
+		
+		b = Background.instance
+		b.delay.sendLater(@job)
 	  
         format.html { redirect_to(@job, :notice => 'Job was successfully created.') }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
