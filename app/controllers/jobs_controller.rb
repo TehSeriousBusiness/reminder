@@ -115,4 +115,20 @@ class JobsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  ## select the template and fill a job with the template information
+  def selecttemplate
+	@templates = JobTemplate.all
+	puts "wooohooo, ich bin im select drin ########################"
+	
+  end
+  
+  def newByTemplate
+	@template = JobTemplate.find(params[:id])
+	@job = @user.jobs.new
+	
+	# Use the Template values
+	@job.subject = @template.templateSubject
+	@job.content = @template.templateContent
+  end
 end
