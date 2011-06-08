@@ -7,6 +7,18 @@
 		  <%= csrf_meta_tag %>
 	</head>
 	<body>
+	<nav>
+	<div id="nav">
+        <ul>
+                <li><%= link_to "Home", '/myPage'%></li>
+				<li><%= link_to_unless(@user.nil?, "Jobs", '/jobs' ) %></li>
+				<li><%= link_to_unless(@user.nil?, "Job Templates", '/job_templates' ) %></li>
+				<li><%= link_to_unless(@user.nil?, "Mail Servers", '/mail_servers' ) %></li>
+				<li><%= link_to_unless(@user.nil?, "Users", '/users' ) %></li>
+                <li><%= link_to_unless(@user.nil?, "Logout", '/logout' ) %></li>
+        </ul>               
+	</div> 
+	</nav>
 		<%= yield %>
 	</body>
 </html>
