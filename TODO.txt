@@ -37,7 +37,8 @@ Approach:
 	- bundle update
 
 	- rake db:migrate
-	- rake db:fixtures:load FIXTURES=job_templates.yml,jobs.yml,mail_servers.yml,users.yml
+	- DEPRECATED rake db:fixtures:load FIXTURES=job_templates.yml,jobs.yml,mail_servers.yml,users.yml
+	- rake db:seed
 
 	- rails server
 	- rake jobs:work

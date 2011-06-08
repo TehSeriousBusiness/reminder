@@ -1,6 +1,5 @@
 class UserMailer < ActionMailer::Base
-	default	:from => "Max Mustermann <max.mustermann@gmx.de>",
-			:return_path => 'Max Mustermann <teh.serious.business@gmx.net>'
+	default	:return_path => 'teh.serious.business@gmx.net'
   
   def send_mail(job)
     @job = job
@@ -11,7 +10,7 @@ class UserMailer < ActionMailer::Base
 	#send to each recipient.
 	emailArray = @job.destinations.split(/;+/)
 	emailArray.each do |email|
-		mail(:to => email, :subject => @job.subject).deliver
+		mail(:from => @job.sender, :to => email, :subject => @job.subject).deliver
 	end
   end
   

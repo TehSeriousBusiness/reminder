@@ -2,6 +2,7 @@ class CreateJobs < ActiveRecord::Migration
   def self.up
     create_table :jobs do |t|
       t.integer :user_id
+	  t.string :sender
       t.text :destinations
       t.string :subject
       t.text :content

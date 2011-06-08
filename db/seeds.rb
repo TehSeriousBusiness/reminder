@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+User.create(:username => 'Admin', :password => 'wsadmin')
+User.create(:username => 'Anon', :password => 'guest')
+
+JobTemplate.create(:templateName => 'Sample#1', :templateSubject => 'HAR HAR HAR', :templateContent => "It's me again! ;-)")

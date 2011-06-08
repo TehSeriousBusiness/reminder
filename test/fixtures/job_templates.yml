@@ -1,9 +1,9 @@
 one:
-  templateName: Birthday
-  templateSubject: Happy Birthday!
-  templateContent: Heyho, alles gute zum Geburtstag... !
+  templateName: BirthdayTest
+  templateSubject: B-day!
+  templateContent: Hi, gratz, kk, thxbye.
 
 two:
-  templateName: NoSpam
-  templateSubject: PEW PEW PEW
-  templateContent: BAM BAM BAM, SPAM INCOMING!
+  templateName: Sample#1Test
+  templateSubject: HAR HAR HAR
+  templateContent: It's me again! ;-)

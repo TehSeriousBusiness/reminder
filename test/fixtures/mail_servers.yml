@@ -1,11 +1,11 @@
 one:
   address: teh.serious.business@gmx.de
-  password: GMXPW
+  password: GmxPw
   host: mail.gmx.net
   port: 25  
 
 two:
   address: teh.serious.business@googlemail.de
-  password: GooglePW
+  password: GooglePw
   host: smtp.googlemail.com
   port: 465  

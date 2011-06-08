@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+	<th>Sender</th>
     <th>Destinations</th>
     <th>Subject</th>
     <th>Content</th>
@@ -16,6 +17,7 @@
 
 <% @jobs.each do |job| %>
   <tr>
+	<td><%= job.sender %></td>
     <td><%= job.destinations %></td>
     <td><%= job.subject %></td>
     <td><%= job.content %></td>

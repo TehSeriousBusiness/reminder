@@ -14,18 +14,11 @@ class Background
 			elsif (@job.repetition != 0)
 				@job.repetition -= 1
 			end
-			@job.kickOff = Time.now.utc + @job.delay.seconds #may cause problem : job_delay vs member var
+			@job.kickOff = Time.now.utc + @job.delay.seconds
 			@job.save()
 		end
 		
 		#send later
-		b = Background.instance
-		b.delay({:run_at => @job.delay.from_now}).sendLater(@job)
-	end
-	
-	def destroyAll
-		Job.all.each do |job|
-			job.destroy
-		end
+		Background.instance.delay({:run_at => @job.delay.from_now}).sendLater(@job)
 	end
 end

@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20110607201019) do
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id"
+    t.string   "sender"
     t.text     "destinations"
     t.string   "subject"
     t.text     "content"

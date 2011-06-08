@@ -1,5 +1,18 @@
 class JobsController < ApplicationController
 	before_filter :login_required
+	
+	# Create new job for user and set default values.
+	def createJobWithDefaults
+		@job = @user.jobs.new
+		@job.sender = "Average Joe <average.joe@gmx.net>"
+		@job.destinations = "recipient@gmx.net"
+		@job.subject = "A Simple Subject"
+		@job.content = "This is a simple test content!\n\n#{Time.now.localtime}"
+		@job.repetition = 2
+		@job.delay = 10
+	end
+	
+	
   # GET /jobs
   # GET /jobs.xml
   def index
@@ -31,14 +44,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   # GET /jobs/new.xml
   def new
-    @job = @user.jobs.new
-	
-	# Set default values here!
-	@job.destinations = "no-reply@gmx.net"
-	@job.subject = "A Simple Subject"
-	@job.content = "This is a simple test content!\n\n#{Time.now.localtime}"
-	@job.repetition = 2
-	@job.delay = 60
+    createJobWithDefaults
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,12 +64,8 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
-	  
-		#void method
-		#UserMailer.send_mail(@job)
-		
-		b = Background.instance
-		b.delay.sendLater(@job)
+		# send mail now or later...
+		Background.instance.delay.sendLater(@job)
 	  
         format.html { redirect_to(@job, :notice => 'Job was successfully created.') }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
@@ -119,13 +121,11 @@ class JobsController < ApplicationController
   ## select the template and fill a job with the template information
   def selecttemplate
 	@templates = JobTemplate.all
-	puts "wooohooo, ich bin im select drin ########################"
-	
   end
   
   def newByTemplate
 	@template = JobTemplate.find(params[:id])
-	@job = @user.jobs.new
+	createJobWithDefaults
 	
 	# Use the Template values
 	@job.subject = @template.templateSubject

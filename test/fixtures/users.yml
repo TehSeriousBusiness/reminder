@@ -1,7 +1,7 @@
 one:
-  username: Admin
+  username: AdminTest
   password: wsadmin
 
 two:
-  username: Anon
+  username: AnonTest
   password: guest

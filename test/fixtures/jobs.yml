@@ -1,4 +1,5 @@
 one:
+  sender: emailAddress@gmx.net
   destinations: emailAddress@gmx.net
   subject: First
   content: Content number one!
@@ -8,6 +9,7 @@ one:
   user: one
 
 two:
+  sender: emailAddress@gmx.net
   destinations: emailAddress@gmx.net;emailAddress@web.de
   subject: Second
   content: Content number two!
