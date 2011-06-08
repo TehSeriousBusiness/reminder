@@ -14,11 +14,13 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.xml
   def show
-    @job = @user.jobs.find_by_id(params[:id])
+	@job = @user.jobs.find(params[:id])
+	#if find fails, redirect to the controller
+	rescue
+		flash[:error] = 'Record not found'
+		redirect_to :controller => 'jobs'
+		return
 	
-	if @job.nil?
-		return redirect_to '/'
-	end
 
     respond_to do |format|
       format.html # show.html.erb

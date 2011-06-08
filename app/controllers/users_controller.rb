@@ -95,6 +95,8 @@ class UsersController < ApplicationController
   end
 
   def process_login
+	# reset the left over from the last session, this is necessary if the session started without doing a login first
+	reset_session
     # check if user pressed anon button
     if(params[:commit] == "LoginAnon")
       @user = User.find_by_username("Anon")
