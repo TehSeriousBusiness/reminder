@@ -85,4 +85,20 @@ class JobsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def destroyall
+	puts "############################################################################"
+	puts "destroyALL CALLED"
+    @jobs = @user.jobs
+
+	#iterate through all jobs and destory each at a time
+	@jobs.each do | job |
+		job.destroy
+	end
+	
+    respond_to do |format|
+      format.html { redirect_to(jobs_url) }
+      format.xml  { head :ok }
+    end
+  end
 end

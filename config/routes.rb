@@ -1,4 +1,7 @@
 Reminder::Application.routes.draw do
+
+## adding a routing to destroy all jobs with one call
+  match "/jobs/destroyall" => "jobs#destroyall"
   resources :jobs
 
   resources :job_templates
