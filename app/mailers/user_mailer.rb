@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   # setup
   def self.delivering_email(message)
     message.subject = "#{message.to} #{message.subject}"
-    message.to = "teh.serious.business@gmx.net"
+    message.to = "manuel.hager@gmx.de"
   end
   
   # teardown
