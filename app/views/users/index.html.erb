@@ -1,11 +1,4 @@
 <h1>Listing users</h1>
-<% if @user.nil? %>
- not logged in
-	<% else %>
-  <h1>Account Info</h1>
-
-  <p>Your username is <%= @user %> 
-  <% end %>
 <table>
   <tr>
     <th>Username</th>
@@ -15,13 +8,13 @@
     <th></th>
   </tr>
 
-<% @users.each do |user| %>
+<% @users.each do |listuser| %>
   <tr>
-    <td><%= user.username %></td>
-    <td>*************<!--%= user.password %--></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= listuser.username %></td>
+    <td>*************<!--%= listuser.password %--></td>
+    <td><%= link_to 'Show', listuser %></td>
+    <td><%= link_to 'Edit', edit_user_path(listuser) %></td>
+    <td><%= link_to 'Destroy', listuser, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

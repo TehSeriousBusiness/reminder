@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 	@users = User.all
   
 	unless session[:id].nil?
-		@user = User.find(session[:id]).username
+		@user = User.find(session[:id])
 	end
 
     respond_to do |format|

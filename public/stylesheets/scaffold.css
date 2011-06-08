@@ -54,3 +54,40 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+/*CSS code*/
+.bar
+{
+width:200px;
+}
+
+#left
+{
+float:left;
+padding: 0 10px;
+
+}
+
+#right
+{
+float:right;
+padding: 0 10px;
+
+}
+
+#center
+{
+margin-left:200px;
+margin-right:200px;
+padding: 0 10px;
+
+}
+
+#myText
+{
+width:80%;
+margin:0 auto;
+padding: 0 10px;
+
+}
+}
