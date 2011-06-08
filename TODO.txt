@@ -29,8 +29,21 @@ Test missing
 	- kickOff, 2 years form now ++
  
  
-Important commands:
+Approach:
+	- kill database
+----------------------------------
 	- bundle install
 	- gem install rake
 	- bundle update
+
+	- rake db:migrate
 	- rake db:fixtures:load FIXTURES=job_templates.yml,jobs.yml,mail_servers.yml,users.yml
+
+	- rails server
+	- rake jobs:work
+
+
+	- rake test:prepare
+	- rake db:test:load
+	- rake test:units #all test passed, 85
+	- rake test:functionals #7 failure, alle von jobs_controller

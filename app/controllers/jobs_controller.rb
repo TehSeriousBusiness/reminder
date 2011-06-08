@@ -30,6 +30,13 @@ class JobsController < ApplicationController
   # GET /jobs/new.xml
   def new
     @job = @user.jobs.new
+	
+	# Set default values here!
+	@job.destinations = "no-reply@gmx.net"
+	@job.subject = "A Simple Subject"
+	@job.content = "This is a simple test content!\n\n#{Time.now.localtime}"
+	@job.repetition = 2
+	@job.delay = 60
 
     respond_to do |format|
       format.html # new.html.erb
@@ -49,6 +56,13 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
+	  
+		#void method
+		#UserMailer.send_mail(@job)
+		
+		b = Background.instance
+		b.delay.sendLater(@job)
+	  
         format.html { redirect_to(@job, :notice => 'Job was successfully created.') }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
       else
@@ -87,8 +101,6 @@ class JobsController < ApplicationController
   end
   
   def destroyall
-	puts "############################################################################"
-	puts "destroyALL CALLED"
     @jobs = @user.jobs
 
 	#iterate through all jobs and destory each at a time
