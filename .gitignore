@@ -2,4 +2,7 @@
 log/*.log
 tmp/
 vendor
-db/*.sqlite3
+
+/log
+/app/mailers
+/app/mailers
