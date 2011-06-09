@@ -38,8 +38,8 @@ gem 'sqlite3'
 gem 'mail'  
 
 group :deployment, :test do
- 	gem 'capistrano'
- end
+	gem 'capistrano'
+end
 
  
 gem 'validates_timeliness', '~> 3.0.2'
