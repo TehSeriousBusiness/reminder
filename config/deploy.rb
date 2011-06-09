@@ -32,9 +32,15 @@
 namespace :serverCom do
 	desc "kills and restarts the server"
 	task :restart do 
-		run "ps aux|gawk '$11 == \"/usr/bin/ruby18\" {kill -9 $2}'"				## finds the process_ID and kills the processes
+		#run "killall -9 ruby18"				## finds the process_ID and kills the processes
+		run "ps aux|gawk '$11 == \"/usr/bin/ruby18\" {kill -9 $2}'"	
 		run "cd #{current_path} && rails server -p 6667 -d"												## switching to the current dir and starting the rails server
 		run "touch #{current_path}/tmp/restarted"								## set a timestamp at the file restarted
+	end
+	
+	desc "bundle install"
+	task :bundle do 
+		run "cd #{current_path} && #{try_sudo} bundle install"	## installs all required bundles
 	end
 end
 
@@ -43,7 +49,7 @@ end
 ### USING THIS GUIDE https://github.com/capistrano/capistrano/wiki/2.x-From-The-Beginning
  set :deploy_to, "/srv/www/swEng/reminder/"
  #set :user, "sweng"
- set :use_sudo, false
+ set :use_sudo, true
 # ssh_options[:forward_agent] = true
 
 
@@ -55,9 +61,11 @@ set :repository, "git@github.com:TehSeriousBusiness/reminder.git"  # Your clone 
 set :scm, "git"
 set :user, "sweng"  # The server's user for deploys
 #set :scm_passphrase, "p@ssw0rd"  # The deploy user's password
-ssh_options[:forward_agent] = false
+ssh_options[:forward_agent] = true
 set :branch, "master"
 set :scm_verbose, true
 set :deploy_via, :remote_cache
 
 ssh_options[:port] = 23
+#set :ssh_options, {:forward_agent => true}
+
