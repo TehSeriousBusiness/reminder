@@ -1,10 +1,40 @@
 require 'test_helper'
 
+##beispiele für assert_select http://content.labnotes.org/assert_select/assert_select.html
+#assert_select "html:root>head>title", "Login"
+#assert_select "form[action=?]", url_for(:action=>"login") do
+#  assert_select "input[type=text][name=username]"
+#  assert_select "input[type=password][name=password]"
+#end
+
 class JobsControllerTest < ActionController::TestCase
   setup do
+	@user = users(:one)
     @job = jobs(:one)
+	@template = job_templates(:one)
+	session[:id] = @user.id
   end
 
+  test "should get title" do
+	get :index
+	assert_select 'title', 'Reminder'
+  assert_match /Reminder/, response.body
+  end
+  
+    test "should get 3 links, destroy all, new and newfromtemplate" do
+	get :index
+	#assert_select "html:root>head>body>", "Destroy ALL"
+	assert_match /Destroy ALL/, response.body
+	assert_match /New Job/, response.body
+	assert_match /New Job From Template/, response.body
+  end
+  
+  test "should get job from a template" do
+	get(:newByTemplate, {'id' => @template.id})
+	assert_select "input#job_subject[value="+@template.templateSubject+"]"
+	assert_select "textarea#job_content"
+  end
+  
   test "should get index" do
     get :index
     assert_response :success
