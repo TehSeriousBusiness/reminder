@@ -34,6 +34,7 @@ Approach:
 ----------------------------------
 	- bundle install
 	- gem install rake
+	- gem install capistrano
 	- bundle update
 
 	- rake db:migrate

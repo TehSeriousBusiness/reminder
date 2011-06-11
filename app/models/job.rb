@@ -23,8 +23,8 @@ class Job < ActiveRecord::Base
 	validates_presence_of(:repetition)
 	validates_presence_of(:delay)
 
-	# validate delay = 0++
-	validates_numericality_of :delay, :only_integer => true, :greater_than_or_equal_to => 0
+	# validate delay = 1++
+	validates_numericality_of :delay, :only_integer => true, :greater_than => 0
 
 	# validate repetition = 0++
 	validates_numericality_of :repetition, :only_integer => true, :greater_than_or_equal_to => 0
