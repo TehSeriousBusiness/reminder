@@ -13,9 +13,9 @@ User.create(:username => 'Anon', :password => 'guest')
 JobTemplate.create(:templateName => 'Sample#1', :templateSubject => 'HAR HAR HAR', :templateContent => "It's me again! ;-)")
 
 
-MailServer.create(:address => "teh.serious.business@gmx.net", :password => "IHazInternetz", :host => "mail.gmx.net", :port => 25)
+MailServer.create(:address => "teh.serious.business@gmx.net", :password => "*************", :host => "mail.gmx.net", :port => 25)
 
-
+# leftover:
 # ActionMailer::Base.smtp_settings = {
   # :domain               => "gmx.net",
   # :authentication       => "plain",
