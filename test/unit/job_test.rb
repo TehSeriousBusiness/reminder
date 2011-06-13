@@ -3,38 +3,16 @@ require 'test_helper'
 ### TODO: validation for parameters missing: content, attachement
 class JobTest < ActiveSupport::TestCase
 
-  #### Missing Parameters START ####
-  ### Checking for missing parameters
-  ##  t.string :initiator
-  ##  t.text :destinations
-  ##  t.string :subject
-  ##  t.text :content
-  ##  t.binary :attachement
-  ##  t.date :kickOff
-  ##  t.integer :repetition
-  ##  t.integer :delay
-  ### init predefined parameters to use in all "missing paramteres tests"
-  @@testVarDestinations = "dest1@host1.de;dest2@host2.com;dest3@host3.org"
-  @@testVarSubject = "This is a Subject"
-  @@testVarContent = "This is a very long Text, This is also the Content of the Email"
-  @@testVarattachement = 0b111111110000000000000011 # iam a binary -> hex: F03
-  @@testVarKickOff = Time.now()
-  @@testVarRepetition = 4
-  @@testVarDelay = 60 # delay is 60 seconds
-  ## default without missing parameters
-  #job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
   def setup
-    @validJob = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff => @@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
+    @validJob = Job.new(valid_job_attributes)
   end
   
-  test "valid_job_attributes" do
-	job = Job.new(valid_job_attributes)
-	assert job.save()
-  end
-  
-  test "Valid - Belongs to Admin - Fixtures" do
+  test "Valid - Both fixtures belongs to AdminTest - Fixtures" do
 	job = jobs(:one)
-	assert_equal job.user.username, "Admin"
+	assert_equal job.user.username, "AdminTest"
+	
+	job = jobs(:two)
+	assert_equal job.user.username, "AdminTest"
   end
 
   test "Valid - Creating Valid Job  Object" do
@@ -42,38 +20,44 @@ class JobTest < ActiveSupport::TestCase
   end
 
   test "Invalid - Missing Parameters - destinations" do
-    job = Job.new(:subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
-    assert !job.save(), job.errors.inspect
+	job = Job.new(valid_job_attributes(:destinations => nil))
+	assert !job.save(), job.errors.inspect
+  end
+  
+  test "Invalid - Missing Parameters - sender" do
+	job = Job.new(valid_job_attributes(:sender => nil))
+	assert !job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - subject" do
-    job = Job.new(:destinations => @@testVarDestinations, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
-    assert !job.save(), job.errors.inspect
+	job = Job.new(valid_job_attributes(:subject => nil))
+	assert !job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - content" do
-    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
-    assert !job.save(), job.errors.inspect
+	job = Job.new(valid_job_attributes(:content => nil))
+	assert !job.save(), job.errors.inspect
   end
 
-  test "Valid - Missing Parameters - attachement" do
-    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent, :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition, :delay => @@testVarDelay)
-    assert job.save(), job.errors.inspect
-  end
+  # DEPRECATED, not yet needed
+  # test "Valid - Missing Parameters - attachement" do
+	# job = Job.new(valid_job_attributes(:attachement => nil))
+	# assert !job.save(), job.errors.inspect
+  # end
 
   test "Invalid - Missing Parameters - kickOff" do
-    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :repetition => @@testVarRepetition, :delay => @@testVarDelay)
-    assert !job.save(), job.errors.inspect
+	job = Job.new(valid_job_attributes(:kickOff => nil))
+	assert !job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - repetition" do
-    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :delay => @@testVarDelay)
-    assert !job.save(), job.errors.inspect
+	job = Job.new(valid_job_attributes(:repetition => nil))
+	assert !job.save(), job.errors.inspect
   end
 
   test "Invalid - Missing Parameters - delay" do
-    job = Job.new(:destinations => @@testVarDestinations, :subject => @@testVarSubject, :content => @@testVarContent,  :kickOff =>@@testVarKickOff, :repetition => @@testVarRepetition)
-    assert !job.save(), job.errors.inspect
+	job = Job.new(valid_job_attributes(:delay => nil))
+	assert !job.save(), job.errors.inspect
   end
   #### Missing Parameters END ####
 
@@ -192,9 +176,9 @@ class JobTest < ActiveSupport::TestCase
     assert !@validJob.save(), @validJob.errors.inspect
   end
 
-  test "Valid - Validate Parameter - delay - number = 0" do
+  test "Invalid - Validate Parameter - delay - number = 0" do
     @validJob.delay = 0
-    assert @validJob.save(), @validJob.errors.inspect
+    assert !@validJob.save(), @validJob.errors.inspect
   end
 
   test "Valid - Validate Parameter - delay - number = 1" do
@@ -206,21 +190,4 @@ class JobTest < ActiveSupport::TestCase
     @validJob.delay = 10
     assert @validJob.save(), @validJob.errors.inspect
   end
-  #### Validate Parameters END ####
-
-  #### XYZ START ####
-
-  #### XYZ END ####
-
-  ### SPEZIAL reggex test
-  test "check regex 01" do
-    email = "bla"
-    assert email.match("bla")
-  end
-
-  test "check regex 02" do
-    @validJob.destinations = "notmatching"
-    assert !@validJob.save(), @validJob.errors.inspect
-  end
-
 end

@@ -29,6 +29,7 @@ class ActiveSupport::TestCase
 	
 	def valid_job_attributes(add_attributes={})
 	{
+		:sender => "senderAddress@host.com",
 		:destinations => "dest1@host1.de;dest2@host2.com;dest3@host3.org",
 		:subject => "This is a Subject",
 		:content => "This is a very long Text, This is also the Content of the Email",
