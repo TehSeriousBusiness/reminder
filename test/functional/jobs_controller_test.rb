@@ -15,6 +15,7 @@ class JobsControllerTest < ActionController::TestCase
 	session[:id] = @user.id
   end
 
+  #maybe move this to something like application_controller_test.rb
   test "should get title" do
 	get :index
 	assert_select 'title', 'Reminder'
@@ -32,7 +33,7 @@ class JobsControllerTest < ActionController::TestCase
   test "should get job from a template" do
 	get(:newByTemplate, {'id' => @template.id})
 	assert_select "input#job_subject[value="+@template.templateSubject+"]"
-	assert_select "textarea#job_content"
+	assert_select "textarea#job_content" # TODO get the "value" between the textarea tags and compare it
   end
   
   test "should get index" do
@@ -74,6 +75,16 @@ class JobsControllerTest < ActionController::TestCase
     assert_difference('Job.count', -1) do
       delete :destroy, :id => @job.to_param
     end
+
+    assert_redirected_to jobs_path
+  end
+  
+  test "should destroyall job" do
+  	#setup a user
+	@user = users(:one)
+	session[:id] = @user
+	get(:destroyall, {'user' => @user})
+    assert_response :redirect
 
     assert_redirected_to jobs_path
   end
