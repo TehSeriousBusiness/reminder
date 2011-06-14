@@ -14,6 +14,27 @@ class UsersControllerTest < ActionController::TestCase
 	#assert_match /Reminder/, response.body
   end
 
+  test "should get myPage" do
+	#login first
+	@user = users(:one)
+	session[:id] = @user.id
+    get :myPage
+    assert_response :success
+    #assert_not_nil assigns(:users)
+  end
+  
+  test "should NOT get myPage, not loged in" do
+    get :myPage
+    assert_response :redirect
+    assert_redirected_to(:controller => "users", :action => "login")
+  end
+  
+  test "should redirect to login after logout" do
+    get :logout
+    assert_response :redirect
+	assert_redirected_to(:controller => "users", :action => "login")
+  end
+  
   test "should get new" do
     get :new
     assert_response :success
