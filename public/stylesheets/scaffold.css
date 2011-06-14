@@ -61,11 +61,14 @@ div.field, div.actions {
 width:200px;
 }
 
-#left
-{
-float:left;
-padding: 0 10px;
-
+nav {
+	float:left;
+	padding: 0 10px;
+	border-width: 10px;
+	background: #71A45A  repeat-x;
+    background-size: 100%;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }
 
 #right
@@ -90,4 +93,19 @@ margin:0 auto;
 padding: 0 10px;
 
 }
-}
+
+#pageContent {  
+     margin-top: 0px;  
+     padding: 2px;
+	 border-width: 10px;
+	 background-color: #C0A53E;
+	 /*border-color: #f0f0f0;*/
+     /*background: #467612 url("intro_background.png") repeat-x;  */
+     background-size: 100%;  
+	#-moz-border-radius: 15px;
+	#border-radius: 15px;
+	#height: 5em;
+	#width: 12em;
+	-moz-border-radius: 1em 4em 1em 1em;
+	border-radius: 1em 4em 1em 1em;
+}  

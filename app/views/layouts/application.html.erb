@@ -9,7 +9,7 @@
 	<body>
 
 <div>
-	<div id="left" class="bar">
+	<nav>
 		<ul>
 			<li><%= link_to "Home", '/myPage' %></li>
 			<li><%= link_to_unless(@user.nil?, "Jobs", '/jobs' ) %></li>
@@ -23,13 +23,11 @@
 			<hr><p>You are logged in as </p><h3><%= @user.username %></h3>
 		<% end %>
 		</ul>
-	</div>
+	</nav>
 	
 	<div id="right" class="bar"></div>
-	<div id="center"><%= yield %>
-		<div id="myText">
-		</div>
-	</div>
+	<div id="center"><div id="pageContent"><%= yield %>
+	</div></div>
 </div> 
 
 	</body>
