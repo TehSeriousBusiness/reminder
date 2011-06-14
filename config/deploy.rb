@@ -34,7 +34,7 @@ namespace :serverCom do
 	task :restart do 
 		#run "killall -9 ruby18"				## finds the process_ID and kills the processes
 		run "killall -9 ruby18;true"	
-		run "cd #{current_path} && rails server -p 6667 -d"												## switching to the current dir and starting the rails server
+		run "cd #{current_path} && rails server -p 6666 -d"												## switching to the current dir and starting the rails server
 		#run "cd #{current_path} && rake jobs:work &"
 		run "touch #{current_path}/tmp/restarted"								## set a timestamp at the file restarted
 	end
