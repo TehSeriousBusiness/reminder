@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => :myPage
+  before_filter :login_required, :except => [:login, :process_login]
+  
   # GET /users
   # GET /users.xml
   def index

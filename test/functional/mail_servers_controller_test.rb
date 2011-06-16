@@ -2,6 +2,8 @@ require 'test_helper'
 
 class MailServersControllerTest < ActionController::TestCase
   setup do
+	@user = users(:one)
+	session[:id] = @user.id
     @mail_server = mail_servers(:one)
   end
 

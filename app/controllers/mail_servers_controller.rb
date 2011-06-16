@@ -1,4 +1,6 @@
 class MailServersController < ApplicationController
+  before_filter :login_required
+  
   # GET /mail_servers
   # GET /mail_servers.xml
   def index

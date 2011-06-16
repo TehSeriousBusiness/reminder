@@ -3,30 +3,18 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
+	session[:id] = @user.id
   end
 
   test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
-	
-	#assert_select 'title', 'Reminder'
-	#assert_match /Reminder/, response.body
   end
 
   test "should get myPage" do
-	#login first
-	@user = users(:one)
-	session[:id] = @user.id
     get :myPage
     assert_response :success
-    #assert_not_nil assigns(:users)
-  end
-  
-  test "should NOT get myPage, not loged in" do
-    get :myPage
-    assert_response :redirect
-    assert_redirected_to(:controller => "users", :action => "login")
   end
   
   test "should redirect to login after logout" do
