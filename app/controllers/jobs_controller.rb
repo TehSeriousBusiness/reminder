@@ -16,7 +16,7 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.xml
   def index
-    @jobs = @user.jobs
+	@jobs = (@user.username == "Admin")? Job.all : @user.jobs
 
     respond_to do |format|
       format.html # index.html.erb
@@ -105,7 +105,7 @@ class JobsController < ApplicationController
   end
   
   def destroyall
-    @jobs = @user.jobs
+	@jobs = (@user.username == "Admin")? Job.all : @user.jobs
 
 	#iterate through all jobs and destory each at a time
 	@jobs.each do | job |
