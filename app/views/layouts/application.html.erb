@@ -19,8 +19,11 @@
 			</ul>
 			<ul>
 			<% if !@user.nil? %>
-				<hr /><p>You are logged in as </p><h3><%= @user.username %></h3>
+				<div id="userStatus">
+					<hr /><p>You are logged in as </p><h3><%= @user.username %></h3>
+				<div id="userStatus">
 			<% end %>
+			
 			</ul>
 		</nav>
 		<!-- Navigation Bar END -->

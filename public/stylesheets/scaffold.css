@@ -1,4 +1,3 @@
-/* Required MULTIPLE */
 body {
 	background-color: #fff; 
 	color: #333;
@@ -12,7 +11,7 @@ body {
 	line-height: 18px;
 }
 
-/* Required */
+/* navigation bar*/
 nav {
 	float:left;
 	border-width: 10px;
@@ -23,14 +22,19 @@ nav {
 	border-radius: 15px;
 }
 
-/* Required */
+/* Displays the user status in the navbar! */
+nav #userStatus {
+	border: 0px solid red;
+	border-style:solid;
+	border-top: 5px solid #ffffff;
+}
+
 #center {
 	margin-left: 140px;
 	margin-right: 5px;
-	padding: 0px 20px; /* padding to the navbar*/
+	padding: 0px 20px;
 }
 
-/* Required */
 #pageContent {  
 	margin-top: 0px;  
 	padding: 5px;
@@ -41,7 +45,7 @@ nav {
 	border-radius: 1em 4em 1em 1em;
 } 
 
-#pageContentHeader{
+#pageContentHeader {
 	border: 0px solid red;
 	border-style:solid;
 	border-bottom: 5px solid #ffffff;
@@ -49,9 +53,13 @@ nav {
 	line-height: 60px;
 	font-weight:bold
 }
-#pageContentHeader subhead{
+
+#pageContentHeader #subhead{
 	font-size: 10px;
 }
+
+
+
 
 /************************** RAILS CSS ***************/
 
