@@ -62,7 +62,7 @@ set :repository, "git@github.com:TehSeriousBusiness/reminder.git"  # Your clone 
 set :scm, "git"
 set :user, "sweng"  # The server's user for deploys
 #set :scm_passphrase, "p@ssw0rd"  # The deploy user's password
-ssh_options[:forward_agent] = true
+ssh_options[:forward_agent] = false
 set :branch, "master"
 set :scm_verbose, true
 set :deploy_via, :remote_cache
