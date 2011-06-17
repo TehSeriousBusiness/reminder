@@ -71,7 +71,7 @@ namespace :deploy do
 	
 	desc "Set Symlink to Shared/DB/..."
 	task :database do
-		run "rm #{release_path}/db/development.sqlite3"
+		run "rm #{release_path}/db/development.sqlite3;true"
 		run "ln -nsf #{shared_path}/db/development.sqlite3 #{release_path}/db/development.sqlite3"
 	end
 end
