@@ -23,6 +23,11 @@ set :deploy_via, :remote_cache
 ssh_options[:port] = 23
 
 
+#
+# WHAT UP?
+#
+
+
 # set :application, "Reminder"
 # set :repository,  "ssh://git@kater.homelinux.org:23/reminder"
 
