@@ -4,11 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-	@users = User.all
-  
-	unless session[:id].nil?
-		@user = User.find(session[:id])
-	end
+	@users = (@user.username == "Admin")? User.all : [ @user ]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,8 +15,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
@@ -102,14 +96,14 @@ class UsersController < ApplicationController
     if(params[:commit] == "LoginAnon")
       @user = User.find_by_username("Anon")
       session[:id] = @user.id
-      redirect_to session[:return_to] || '/myPage'
+      redirect_to '/myPage'
     else
       if (user = User.authenticate(params[:username], params[:password]))
         session[:id] = user.id # Remember the user's id during this session
-        redirect_to session[:return_to] || '/myPage'
+        redirect_to '/myPage'
       else
         flash[:error] = 'Invalid login.'
-        redirect_to session[:return_to] || '/INVALIDUSER'+params[:username]
+		 redirect_to '/'
       end
     end
   end
@@ -123,27 +117,4 @@ class UsersController < ApplicationController
     flash[:message] = 'Logged out.'
     redirect_to :action => 'login'
   end
-  #  def process_login
-  #    redirect_to session[:return_to] || '/'
-  #  end
-
-  #
-  #  def process_login
-  #    if user = User.authenticate(params[:user])
-  #      session[:id] = user.id # Remember the user's id during this session
-  #      redirect_to session[:return_to] || '/'
-  #    else
-  #      flash[:error] = 'Invalid login.'
-  #      redirect_to :action => 'login', :username => params[:user][:username]
-  #    end
-  #  end
-  #
-  #  def logout
-  #    reset_session
-  #    flash[:message] = 'Logged out.'
-  #    redirect_to :action => 'login'
-  #  end
-  #
-  #  def my_account
-  #  end
 end
