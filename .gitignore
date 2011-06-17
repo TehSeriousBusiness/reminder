@@ -1,8 +1,6 @@
 .bundle
-log/*.log
 tmp/
 vendor
-
 /log
 /app/mailers
-/app/mailers
+/db/*.sqlite3
