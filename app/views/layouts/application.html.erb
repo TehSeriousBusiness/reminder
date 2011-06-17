@@ -18,8 +18,8 @@
 			<li><%= link_to_unless(@user.nil?, "Users", '/users' ) %></li>
 			<li><%= link_to_unless(@user.nil?, "Logout", '/logout' ) %></li>
 		</ul>
-		<ul><% if @user.nil? %>
-		<% else %>
+		<ul>
+		<% if !@user.nil? %>
 			<hr><p>You are logged in as </p><h3><%= @user.username %></h3>
 		<% end %>
 		</ul>

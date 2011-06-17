@@ -5,11 +5,11 @@
 <%= form_tag(:method => "post", :action => 'process_login') do %>
 	<tr>
 		<td><%= label_tag(:q, "Login As:") %></td>
-		<td><%= text_field_tag(:username) %><td>
+		<td><%= text_field_tag(:username) %></td>
 	</tr>
 	<tr>
 		<td><%= label_tag(:q, "Password:") %></td>
-		<td><%= password_field_tag(:password) %><td>
+		<td><%= password_field_tag(:password) %></td>
 	</tr>  
 	<tr>
 		<td><%= submit_tag "Login" %></td>
