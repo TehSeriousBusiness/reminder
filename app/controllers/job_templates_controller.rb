@@ -1,4 +1,6 @@
 class JobTemplatesController < ApplicationController
+  before_filter :login_required
+  
   # GET /job_templates
   # GET /job_templates.xml
   def index

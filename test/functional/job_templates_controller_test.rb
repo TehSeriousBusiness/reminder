@@ -2,6 +2,8 @@ require 'test_helper'
 
 class JobTemplatesControllerTest < ActionController::TestCase
   setup do
+	@user = users(:one)
+	session[:id] = @user.id
     @job_template = job_templates(:one)
   end
 
