@@ -35,7 +35,7 @@ namespace :serverCom do
 		#run "killall -9 ruby18"				## finds the process_ID and kills the processes
 		run "killall -9 ruby18;true"	
 		run "cd #{current_path} && rails server -p 6666 -d"												## switching to the current dir and starting the rails server
-		run "cd #{current_path}/script/delayed_job start"
+		run "cd #{current_path}; ruby script/delayed_job restart"
 		run "touch #{current_path}/tmp/restarted"								## set a timestamp at the file restarted
 	end
 	
