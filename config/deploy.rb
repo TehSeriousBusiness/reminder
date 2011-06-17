@@ -1,3 +1,28 @@
+
+
+### USING THIS GUIDE https://github.com/capistrano/capistrano/wiki/2.x-From-The-Beginning
+ set :deploy_to, "/srv/www/swEng/reminder/"
+ #set :user, "sweng"
+ set :use_sudo, true
+# ssh_options[:forward_agent] = true
+
+
+
+#if [ -d /srv/www/swEng/shared/cached-copy ]; then cd /srv/www/swEng/shared/cached-copy && git fetch -q origin && git fetch --tags -q origin && git reset -q --hard 25609f0b03b924916631174cf61951679ca8e58e && git clean -q -d -x -f; else git clone -q  ssh://git@kater.homelinux.org:23/reminder /srv/www/swEng/shared/cached-copy && cd /srv/www/swEng/shared/cached-copy && git checkout -q -b deploy 25609f0b03b924916631174cf61951679ca8e58e; fi
+
+default_run_options[:pty] = true  # Must be set for the password prompt from git to work
+set :repository, "git@github.com:TehSeriousBusiness/reminder.git"  # Your clone URL
+set :scm, "git"
+set :user, "sweng"  # The server's user for deploys
+#set :scm_passphrase, "p@ssw0rd"  # The deploy user's password
+ssh_options[:forward_agent] = false
+set :branch, "master"
+set :scm_verbose, true
+set :deploy_via, :remote_cache
+
+ssh_options[:port] = 23
+
+
 # set :application, "Reminder"
 # set :repository,  "ssh://git@kater.homelinux.org:23/reminder"
 
@@ -29,7 +54,7 @@
  # end
 #end
 
-namespace :serverCom do
+namespace :deploy do
 	desc "kills and restarts the server"
 	task :restart do 
 		#run "killall -9 ruby18"				## finds the process_ID and kills the processes
@@ -43,30 +68,12 @@ namespace :serverCom do
 	task :bundle do 
 		run "cd #{current_path} && #{try_sudo} bundle install"	## installs all required bundles
 	end
+	
+	desc "Set Symlink to Shared/DB/..."
+	task :database do
+		run "rm #{release_path}/db/development.sqlite3"
+		run "ln -nsf #{shared_path}/db/development.sqlite3 #{release_path}/db/development.sqlite3"
+	end
 end
 
-
-
-### USING THIS GUIDE https://github.com/capistrano/capistrano/wiki/2.x-From-The-Beginning
- set :deploy_to, "/srv/www/swEng/reminder/"
- #set :user, "sweng"
- set :use_sudo, true
-# ssh_options[:forward_agent] = true
-
-
-
-#if [ -d /srv/www/swEng/shared/cached-copy ]; then cd /srv/www/swEng/shared/cached-copy && git fetch -q origin && git fetch --tags -q origin && git reset -q --hard 25609f0b03b924916631174cf61951679ca8e58e && git clean -q -d -x -f; else git clone -q  ssh://git@kater.homelinux.org:23/reminder /srv/www/swEng/shared/cached-copy && cd /srv/www/swEng/shared/cached-copy && git checkout -q -b deploy 25609f0b03b924916631174cf61951679ca8e58e; fi
-
-default_run_options[:pty] = true  # Must be set for the password prompt from git to work
-set :repository, "git@github.com:TehSeriousBusiness/reminder.git"  # Your clone URL
-set :scm, "git"
-set :user, "sweng"  # The server's user for deploys
-#set :scm_passphrase, "p@ssw0rd"  # The deploy user's password
-ssh_options[:forward_agent] = false
-set :branch, "master"
-set :scm_verbose, true
-set :deploy_via, :remote_cache
-
-ssh_options[:port] = 23
-#set :ssh_options, {:forward_agent => true}
-
+after 'deploy:update_code', 'deploy:database'
