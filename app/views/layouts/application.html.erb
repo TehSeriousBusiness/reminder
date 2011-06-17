@@ -7,28 +7,28 @@
 		  <%= csrf_meta_tag %>
 	</head>
 	<body>
-
-<div>
-	<nav>
-		<ul>
-			<li><%= link_to "Home", '/myPage' %></li>
-			<li><%= link_to_unless(@user.nil?, "Jobs", '/jobs' ) %></li>
-			<li><%= link_to_unless(@user.nil?, "Job Templates", '/job_templates' ) %></li>
-			<li><%= link_to_unless(@user.nil?, "Mail Servers", '/mail_servers' ) %></li>
-			<li><%= link_to_unless(@user.nil?, "Users", '/users' ) %></li>
-			<li><%= link_to_unless(@user.nil?, "Logout", '/logout' ) %></li>
-		</ul>
-		<ul>
-		<% if !@user.nil? %>
-			<hr><p>You are logged in as </p><h3><%= @user.username %></h3>
-		<% end %>
-		</ul>
-	</nav>
-	
-	<div id="right" class="bar"></div>
-	<div id="center"><div id="pageContent"><%= yield %>
-	</div></div>
-</div> 
-
+		<!-- Navigation Bar START -->
+		<nav>
+			<ul>
+				<li><%= link_to "Home", '/myPage' %></li>
+				<li><%= link_to_unless(@user.nil?, "Jobs", '/jobs' ) %></li>
+				<li><%= link_to_unless(@user.nil?, "Job Templates", '/job_templates' ) %></li>
+				<li><%= link_to_unless(@user.nil?, "Mail Servers", '/mail_servers' ) %></li>
+				<li><%= link_to_unless(@user.nil?, "Users", '/users' ) %></li>
+				<li><%= link_to_unless(@user.nil?, "Logout", '/logout' ) %></li>
+			</ul>
+			<ul>
+			<% if !@user.nil? %>
+				<hr /><p>You are logged in as </p><h3><%= @user.username %></h3>
+			<% end %>
+			</ul>
+		</nav>
+		<!-- Navigation Bar END -->
+		
+		<div id="center">
+			<div id="pageContent">
+				<%= yield %>
+			</div>
+		</div>
 	</body>
 </html>

@@ -1,112 +1,113 @@
-body { background-color: #fff; color: #333; }
-
-body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
+/* Required MULTIPLE */
+body {
+	background-color: #fff; 
+	color: #333;
+	padding: 10px 10px 10px 10px;
+	margin: 0;
+	margin-bottom: 25px;
+	background-color: #f0f0f0;
+	font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+	font-size: 13px;
+	color: #333;
+	line-height: 18px;
 }
 
+/* Required */
+nav {
+	float:left;
+	border-width: 10px;
+	background: #daffb0  repeat-x;
+	width: 150px;
+    background-size: 100%;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+/* Required */
+#center {
+	margin-left: 140px;
+	margin-right: 5px;
+	padding: 0px 20px; /* padding to the navbar*/
+}
+
+/* Required */
+#pageContent {  
+	margin-top: 0px;  
+	padding: 5px;
+	border-width: 10px;
+	background-color: #B0DAFF;
+	background-size: 100%;  
+	-moz-border-radius: 1em 4em 1em 1em;
+	border-radius: 1em 4em 1em 1em;
+} 
+
+#pageContentHeader{
+	border: 0px solid red;
+	border-style:solid;
+	border-bottom: 5px solid #ffffff;
+	font-size: 50px;
+	line-height: 60px;
+	font-weight:bold
+}
+#pageContentHeader subhead{
+	font-size: 10px;
+}
+
+/************************** RAILS CSS ***************/
+
+/* Rails */
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
 
+/* Rails */
 a { color: #000; }
 a:visited { color: #666; }
 a:hover { color: #fff; background-color:#000; }
 
+/* Rails */
 div.field, div.actions {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
+/* Rails */
 #notice {
-  color: green;
+	color: green;
 }
 
+/* Rails */
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+	padding: 2px;
+	background-color: red;
+	display: table;
 }
 
+/* Rails */
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+	width: 450px;
+	border: 2px solid red;
+	padding: 7px;
+	padding-bottom: 0;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
 }
 
-#error_explanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  margin-bottom: 0px;
-  background-color: #c00;
-  color: #fff;
+/* Rails */
+#error_explanation {
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 5px 5px 15px;
+	font-size: 12px;
+	margin: -7px;
+	margin-bottom: 0px;
+	background-color: #c00;
+	color: #fff;
 }
 
-#error_explanation ul li {
-  font-size: 12px;
-  list-style: square;
+/* Rails */
+#error_explanation{
+	font-size: 12px;
+	list-style: square;
 }
-
-/*CSS code*/
-.bar
-{
-width:200px;
-}
-
-nav {
-	float:left;
-	padding: 0 10px;
-	border-width: 10px;
-	background: #daffb0  repeat-x;
-	width: 180px;
-    background-size: 100%;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
-}
-
-#right
-{
-float:right;
-padding: 0 10px;
-
-}
-
-#center
-{
-margin-left:200px;
-margin-right:200px;
-padding: 0 10px;
-
-}
-
-#myText
-{
-width:80%;
-margin:0 auto;
-padding: 0 10px;
-
-}
-
-#pageContent {  
-     margin-top: 0px;  
-     padding: 2px;
-	 border-width: 10px;
-	 background-color: #B0DAFF;
-	 /*border-color: #f0f0f0;*/
-     /*background: #467612 url("intro_background.png") repeat-x;  */
-     background-size: 100%;  
-	#-moz-border-radius: 15px;
-	#border-radius: 15px;
-	#height: 5em;
-	#width: 12em;
-	-moz-border-radius: 1em 4em 1em 1em;
-	border-radius: 1em 4em 1em 1em;
-}  
