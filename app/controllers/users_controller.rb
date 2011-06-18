@@ -24,8 +24,6 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    #@user = User.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  #{ render :xml => @user }
@@ -40,9 +38,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-	username = params[:username]
-	password = params[:password]
-    @user = User.new(:username => username, :password => password)
+    @user = User.new(:username => params[:username], :password => params[:password])
 
     respond_to do |format|
       if @user.save
@@ -87,7 +83,7 @@ class UsersController < ApplicationController
   #http://www.devarticles.com/c/a/Ruby-on-Rails/Login-Systems-and-More-with-Ruby-on-Rails/
   def login
     unless session[:id].nil?
-	redirect_to session[:return_to] || '/myPage'
+		redirect_to session[:return_to] || '/myPage'
     end
   end
 
@@ -104,14 +100,10 @@ class UsersController < ApplicationController
         session[:id] = user.id # Remember the user's id during this session
         redirect_to '/myPage'
       else
-        flash[:error] = 'Invalid login.'
+         flash[:error] = 'Invalid login.'
 		 redirect_to '/'
       end
     end
-  end
-
-  def myPage
-	#TODO
   end
 
   def logout

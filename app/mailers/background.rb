@@ -1,12 +1,19 @@
 class Background
 	include Singleton
-
+	
 	def sendLater(job)
 		@job = job
 	
 		#call UserMailer.send_mail(@job)
-		if( @job.kickOff <= Time.now)
-			UserMailer.send_mail(@job)
+		if( @job.kickOff.utc <= Time.now.utc)
+			begin
+				UserMailer.send_mail(@job)
+			rescue Exception => e
+				puts e
+				@job.destroy
+				return;
+			end
+			
 			# check, repetition < 0 should also be needless.
 			if (@job.repetition == 1)
 				@job.destroy
