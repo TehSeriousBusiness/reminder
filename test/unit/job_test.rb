@@ -60,6 +60,26 @@ class JobTest < ActiveSupport::TestCase
 	assert !job.save(), job.errors.inspect
   end
   #### Missing Parameters END ####
+  
+  test "Invalid - Destinations - Blacklisted mail address" do
+	@validJob.destinations = "blacklist@gmail.com"
+	assert !@validJob.save(), @validJob.errors.inspect
+  end
+  
+  test "Invalid - Destinations - Blacklisted mail address, uppercase" do
+	@validJob.destinations = "blAcKlist@gMaIl.com"
+	assert !@validJob.save(), @validJob.errors.inspect
+  end
+  
+   test "Invalid - Sender - Blacklisted mail address" do
+	@validJob.sender = "blacklist@gmail.com"
+	assert !@validJob.save(), @validJob.errors.inspect
+  end
+  
+  test "Invalid - Sender - Blacklisted mail address, uppercase" do
+	@validJob.sender = "blAcKlist@gMaIl.com"
+	assert !@validJob.save(), @validJob.errors.inspect
+  end
 
   test "Invalid - Validate Parameter - destinations - invalid destinations 01" do
     @validJob.destinations = "nomail@bla"

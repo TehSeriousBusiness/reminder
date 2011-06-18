@@ -1,0 +1,13 @@
+# Advice: Use lower case only!
+# 'blacklist@gmail.com': created for unit test.
+destinations:
+  blacklist@gmail.com
+  manuel.hager@gmx.de
+  mhager@hm.edu
+  dimitrij.heid@gmx.de
+  
+sender:
+  blacklist@gmail.com
+  manuel.hager@gmx.de
+  mhager@hm.edu
+  dimitrij.heid@gmx.de

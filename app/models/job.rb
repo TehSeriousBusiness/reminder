@@ -1,3 +1,5 @@
+require 'yaml'
+
 class Job < ActiveRecord::Base
 	belongs_to :user
 
@@ -32,12 +34,28 @@ class Job < ActiveRecord::Base
 	@@regex = /\A([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
 	def emailVerify
-		emailArray = (destinations || "").split(/;+/)
+		#load blacklist-file.
+		loadBlacklist
 		
+		# check destinations first (mail verify and blacklist check)
+		emailArray = (destinations || "").split(/;+/)
 		emailArray.each do |email|
-			unless @@regex.match(email)
-				errors[:destinations] << "failed"
+			unless @@regex.match(email) && !blacklisted?(email, "destinations")
+				errors[:destinations] << "Invalid mail address!"
 			end
 		end
+		
+		# check sender address (blacklist check only)
+		unless sender.nil?
+			errors[:sender] << "Invalid mail address!" if blacklisted?(sender, "sender")
+		end
 	end	
+	
+	def blacklisted?(check, attribute)
+		@BLACKLIST_CONFIG[attribute].include? check.downcase
+	end
+	
+	def loadBlacklist
+		@BLACKLIST_CONFIG = YAML::load( File.open( "#{Rails.root}/config/blacklists/job.yml" ) ) if @ONCE.nil?
+	end
 end
