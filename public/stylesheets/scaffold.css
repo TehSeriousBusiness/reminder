@@ -23,11 +23,11 @@ nav {
 }
 
 /* Displays the user status in the navbar! */
-nav #userStatus {
+/*nav #userStatus {
 	border: 0px solid red;
 	border-style:solid;
 	border-top: 5px solid #ffffff;
-}
+}*/
 
 #center {
 	margin-left: 140px;
@@ -46,9 +46,9 @@ nav #userStatus {
 } 
 
 #pageContentHeader {
-	border: 0px solid red;
+/*	border: 0px solid red;
 	border-style:solid;
-	border-bottom: 5px solid #ffffff;
+	border-bottom: 5px solid #ffffff;*/
 	font-size: 50px;
 	line-height: 60px;
 	font-weight:bold
