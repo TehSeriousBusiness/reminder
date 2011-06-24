@@ -13,19 +13,19 @@
 
   <div class="field">
     <%= f.label :sender %><br />
-    <%= f.text_field :sender %>
+    <%= f.text_field :sender, :size => 40 %>
   </div>
   <div class="field">
     <%= f.label :destinations %><br />
-    <%= f.text_area :destinations %>
+    <%= f.text_area :destinations, :cols => 65, :rows => 2 %>
   </div>
   <div class="field">
     <%= f.label :subject %><br />
-    <%= f.text_field :subject %>
+    <%= f.text_field :subject, :size => 40 %>
   </div>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :cols => 65, :rows => 13 %>
   </div>
   <div class="field">
     <%= f.label :attachement %><br />
@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :kickOff %><br />
-    <%= f.datetime_select :kickOff, :default => Time.now.localtime %>
+    <%= f.datetime_select :kickOff, :default => Time.now %>
   </div>
   <div class="field">
     <%= f.label :repetition %><br />
